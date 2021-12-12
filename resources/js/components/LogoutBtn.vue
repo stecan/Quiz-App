@@ -1,5 +1,9 @@
 <template>
-    <v-btn text @click="logout">ログアウト</v-btn>
+    <v-row>
+        <v-col>
+            <v-btn text @click="logout" class="px-0">ログアウト</v-btn>
+        </v-col>
+    </v-row>
 </template>
 
 <script>

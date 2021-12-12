@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col cols="2" v-for="(card, idx) in cardList" :key="idx">
+        <v-col cols="3" v-for="(card, idx) in cardList" :key="idx">
             <user-info-card
                 :profileImagePath="card.profileImagePath"
                 :userName="card.userName"
