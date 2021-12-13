@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+Route::get('/admin', 'App\Http\Controllers\AdminController@load');
+Route::post('/admin/request', 'App\Http\Controllers\AdminController@request');
