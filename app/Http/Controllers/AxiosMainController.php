@@ -12,9 +12,9 @@ use App\Models\t_question;
 class AxiosMainController extends Controller
 {
     // 手札最大数
-    private $_followerMax = 20;
+    public static $_followerMax = 20;
     // 回答者最大数
-    private $_challengerMax = 3;
+    public static $_challengerMax = 3;
 
 
     // 手札抽選
@@ -47,6 +47,25 @@ class AxiosMainController extends Controller
         }
 
         // 結果出力
+        return $result;
+    }
+
+    // 手札取得
+    public function getCard(Request $request)
+    {
+        $myId = $request['my_user_id']; // ログインユーザID
+
+        // 手札情報取得
+        $result = t_follower::join('m_user', function($join) {
+            $join->on('t_follower.follower_user_id', '=', 'm_user.user_id')
+              ->where('t_follower.user_id', '=', $myId);
+        })->select([
+            'm_user.follower_user_id as user_id',
+            'm_user.user_name as user_name',
+            'm_user.department as department',
+        ])
+        ->get();
+
         return $result;
     }
 
@@ -118,7 +137,7 @@ class AxiosMainController extends Controller
         $players = m_user::where('a_kbn', '=', '1')->get();
 
         // 抽選
-        $result = drawing($players, $_challengerMax);
+        $result = AxiosMainController::drawing($players, AxiosMainController::$_challengerMax);
 
         // 回答者情報登録
         foreach ($result as $data)
@@ -135,7 +154,6 @@ class AxiosMainController extends Controller
     {
         // 回答中ユーザ情報取得
         $players = m_user::select([
-            'id',
             'user_id',
             'user_name',
             'department',
@@ -150,6 +168,7 @@ class AxiosMainController extends Controller
     public function sendAnswer(Request $request)
     {
         $myId = $request['my_user_id']; // ログインユーザID
+        $myAnswer = $request['my_answer']; // 回答番号
 
         // ユーザ情報取得
         $player = m_user::where('user_id', '=', $myId)
@@ -200,9 +219,35 @@ class AxiosMainController extends Controller
             {
                 $item->point = $question->option_3_selected ? 2 : 1;
             }
+            else
+            {
+                $item->point = 1; // 未回答・参加ポイントのみ
+            }
             $item->save();
         }
 
+        // 参加ユーザ情報取得
+        $players = m_user::where('a_kbn', '<>', '0')->get();
+        foreach ($players as $data)
+        {
+            // 得点計算
+            $point = t_follower::join('t_answer', function($join) {
+                $join->on('t_follower.follower_user_id', '=', 't_answer.a_user_id')
+                  ->where('t_follower.user_id', '=', $data->user_id);
+            })
+            ->sum('t_answer.point');
+    
+            $answer = t_answer::where('a_user_id', '=', $data->user_id)->first();
+            if($answer != null)
+            {
+                $point += $answer->point + 1; // 本人回答ボーナス
+            }
+    
+            // ユーザ情報 得点 更新
+            $data->point = $point;
+            $data->save();
+        }
+        
         // 問題情報 解答開示 更新
         $question->a_disp_flg = true;
         $question->save();
@@ -232,36 +277,44 @@ class AxiosMainController extends Controller
         return $result;
     }
 
-    // スコア計算
-    public function calcScore(Request $request)
+    // スコア取得
+    public function getScore(Request $request)
     {
-        return calcPoint($request['my_user_id']);
+        $myId = $request['my_user_id']; // ログインユーザID
+
+        // 回答中ユーザ情報取得
+        $player = m_user::select([
+            'user_id',
+            'user_name',
+            'department',
+            'point',
+        ])
+        ->where('user_id', '=', $myId)
+        ->first();
+        
+        return $player;
     }
 
-    // ランキング
-    public function ranking(Request $request)
+    // ランキング取得
+    public function getRanking(Request $request)
     {
-        // 参加ユーザの得点を再集計
-        $players = m_user::select(['user_id'])->where('a_kbn', '<>', '0')->get();
-        foreach($players as $player)
-        {
-            calcPoint($player->user_id);
-        }
-
         // ランキング情報取得
         $result = m_user::m_user::select([
             'user_id',
             'user_name',
             'department',
             'point',
-        ])->where('a_kbn', '<>', '0')->get();
+            DB::raw('(select count(point) FROM m_user b WHERE m_user.score < b.score) + 1 as rank'),
+        ])->where('a_kbn', '<>', '0')
+        ->orderBy('point', 'desc')
+        ->get();
 
         return $result;
     }
 
 
     // private:抽選
-    private function drawing($list, int $count) :array
+    function drawing($list, int $count) :array
     {
         // 対象数
         $x = count($list) - 1;
@@ -293,26 +346,4 @@ class AxiosMainController extends Controller
         return $result;
     }
 
-    // private:得点計算
-    private function calcPoint(string $userId) :int
-    {
-        $result = t_follower::join('t_answer', function($join) {
-            $join->on('t_follower.follower_user_id', '=', 't_answer.a_user_id')
-              ->where('t_follower.user_id', '=', $userId);
-        })
-        ->sum('t_answer.point');
-
-        $myAnswer = t_answer::where('a_user_id', '=', $userId)->first();
-        if($myAnswer != null)
-        {
-            $result += $myAnswer->point + 1;
-        }
-
-        // ユーザ情報 得点 更新
-        $user = m_user::where('user_id', '=', $userId)->first();
-        $user->point = $result;
-        $user->save();
-
-        return $result;
-    }
 }
