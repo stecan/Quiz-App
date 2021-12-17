@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], function () {
     $rootMain = 'App\Http\Controllers\AxiosMainController';
     // ■プレイヤー側
-    // TODO プレイヤー情報取得
-
+    // プレイヤー情報取得
+    Route::get('getuser', $rootMain . '@getUser')->name('get.user');
     // 手札抽選
     Route::post('drawingcard', $rootMain . '@drawingCard')->name('drawing.card');
     // TODO 手札抽選終了
@@ -46,7 +46,8 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
     Route::get('drawingquestion', $rootMain . '@drawingQuestion')->name('drawing.question');
     // 回答者抽選
     Route::get('drawingplayer', $rootMain . '@drawingPlayer')->name('drawing.player');
-    // TODO 回答確認
+    // 回答確認
+    Route::get('checkanswer', $rootMain . '@checkAnswer')->name('check.answer');
     // 解答開示
     Route::post('takeanswer', $rootMain . '@takeAnswer')->name('take.answer');
 });

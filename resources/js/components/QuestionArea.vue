@@ -4,6 +4,9 @@
             <v-col>
                 <v-img max-height="350px" max-width="350px" :src="q_path"></v-img>
             </v-col>
+            <v-col v-if="a_path != null">
+                <v-img max-height="350px" max-width="350px" :src="a_path"></v-img>
+            </v-col>
         </v-row>
         <v-row>
             <v-col>
@@ -30,6 +33,7 @@ export default {
         q_sel1:{type: String, default:null},
         q_sel2:{type: String, default:null},
         q_sel3:{type: String, default:null},
+        a_path:{type: String, default:'/images/NoImage.png'},
         ans1:{type: Boolean, default:false},
         ans2:{type: Boolean, default:false},
         ans3:{type: Boolean, default:false},
