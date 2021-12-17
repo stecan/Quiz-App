@@ -24,7 +24,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
     // プレイヤー情報取得
     Route::get('getuser', $rootMain . '@getUser')->name('get.user');
     // 手札抽選
-    Route::post('drawingcard', $rootMain . '@drawingCard')->name('drawing.card');
+    Route::get('drawingcard', $rootMain . '@drawingCard')->name('drawing.card');
     // TODO 手札抽選終了
     // 手札取得
     Route::get('getcard', $rootMain . '@getCard')->name('get.card');
