@@ -32,7 +32,7 @@ class AxiosMainController extends Controller
     // 手札抽選
     public function drawingCard(Request $request)
     {
-        $myId = '00001';//$request['my_user_id']; // ログインユーザID
+        $myId = $request['my_user_id']; // ログインユーザID
 
         // 抽選対象ユーザ情報取得
         $players = m_user::select([
