@@ -117,20 +117,14 @@ class AxiosMainController extends Controller
     public function getQuestion(Request $request)
     {
         $result = null;
-        $query = t_question::where('q_kbn', '=', '1');
-        if(isset($request['flg_admin']))
+
+        if(isset($request['q_id']))
         {
-            $result = $query->first();
+            $result = t_question::where('q_id', '=', $request['q_id'])->first();
         }
         else
         {
-            $result = $query->select([
-                'q_id',
-                'q_text',
-                'option_1',
-                'option_2',
-                'option_3',
-            ])->first();
+            $result = t_question::where('q_kbn', '=', '1')->first();
         }
 
         if($result == null)
