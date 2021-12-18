@@ -1,11 +1,12 @@
 <template>
-   <v-card
-    width="100%"
-   >
+   <v-card>
     <v-img
       :src="profileImagePath"
-      height="200px"
     >
+    <!-- <v-img
+      :src="profileImagePath"
+      height="200px"
+    > -->
         <v-card-title class="white--text">
         {{ userName }}
         </v-card-title>
@@ -32,7 +33,6 @@ export default {
             type: String,
             required: true,
         }
-    }
-    
+    },
 }
 </script>

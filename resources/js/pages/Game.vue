@@ -1,25 +1,20 @@
 <template>
-  <v-container>
+<div>
+  <v-container fluid>
+    <!-- 問題&回答表示エリア -->
     <v-row>
-      <v-col cols="3">
-        <player-info-area userId="99999" userName="テストユーザー" />
-        <player-score-area :point="100" />
-        <reset-card-list-btn />
-        <logout-btn />
-      </v-col>
-      <v-col cols="8" offset="1">
-        <panelist-area :panelists="panelists" />
+      <v-col cols="10" offset="1">
+        <question-area :question="question" :choices="choices" :panelists="panelists" />
       </v-col>
     </v-row>
-    <v-row>
-      <question-modal :question="question" :choices="choices" />
-    </v-row>
-    <v-row class="mt-10">
+    <!-- 手札表示エリア -->
+    <v-row class="ma-5">
       <card-list-area
         :cardList="cardList"
       />
     </v-row>
   </v-container>
+</div>
 </template>
 
 <script>
@@ -28,7 +23,7 @@ const LogoutBtn = () => import("../components/LogoutBtn");
 const PanelistArea = () => import("../components/PanelistArea");
 const PlayerInfoArea = () => import("../components/PlayerInfoArea");
 const PlayerScoreArea = () => import("../components/PlayerScoreArea");
-const QuestionModal = () => import("../components/QuestionModal");
+const QuestionArea = () => import("../components/QuestionArea");
 const ResetCardListBtn = () => import("../components/ResetCardListBtn");
 
 export default {
@@ -38,65 +33,27 @@ export default {
     PanelistArea,
     PlayerInfoArea,
     PlayerScoreArea,
-    QuestionModal,
+    QuestionArea,
     ResetCardListBtn,
   },
   data() {
     return {
       question: "問題文がここに入る\n改行もOK",
-      choices: ["選択肢A", "選択肢B", "選択肢C", "選択肢D"],
-      panelists: [
-        {
-          profileImagePath:
-            "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ１",
-          department: "テスト部署１",
-        },
-        {
-          profileImagePath:
-            "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ２",
-          department: "テスト部署２",
-        },
-        {
-          profileImagePath:
-            "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ３",
-          department: "テスト部署３",
-        },
-      ],
-      cardList: [
-        {
-          profileImagePath: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ１",
-          department: "テスト部署１",
-        },
-        {
-          profileImagePath: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ２",
-          department: "テスト部署２",
-        },
-        {
-          profileImagePath: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ３",
-          department: "テスト部署３",
-        },
-        {
-          profileImagePath: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ４",
-          department: "テスト部署４",
-        },
-        {
-          profileImagePath: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ５",
-          department: "テスト部署５",
-        },
-        {
-          profileImagePath: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-          userName: "テストユーザ６",
-          department: "テスト部署６",
-        },
-      ]      
+      choices: ["選択肢A", "選択肢B", "選択肢C",],
+      panelists:[...Array(3)].map((_, i) => i + 1).map(value => {
+        return {
+          profileImagePath: "https://placehold.jp/150x200.png",
+          userName: "テストユーザ" + value,
+          department: "テスト部署" + value,
+        }
+      }),
+      cardList: [...Array(20)].map((_, i) => i + 1).map(value => {
+        return {
+          profileImagePath: "https://placehold.jp/150x200.png",
+          userName: "テストユーザ" + value,
+          department: "テスト部署" + value,
+        }
+      })
     };
   },
 };

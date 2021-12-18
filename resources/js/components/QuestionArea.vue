@@ -1,51 +1,62 @@
 <template>
-    <v-card
-        width="960px"
-    >
-        <v-layout justify-center>
+    <v-card>
+    <!-- <div class="d-flex flex-no-wrap justify-space-between"> -->
+    <div class="d-flex flex-no-wrap">
             <!-- 問題画像表示エリア -->
             <v-img
+                class="ma-5"
                 aspect-ratio="1.5"
-                position="center center"
                 max-width="640px"
                 max-height="480px"
                 src="https://placehold.jp/640x480.png"
             />
-        </v-layout>
-        <!-- 選択肢表示エリア -->
-        <v-card-text
-            class="d-flex justify-center"
-        >
-            <v-chip-group
-                v-model="selection"
-                active-class="deep-purple accent-4 white--text"
-                column
+        <div>
+            <!-- 回答者表示エリア -->
+            <v-card-title>回答者</v-card-title>
+            <v-avatar
+                class="ma-2"
+                v-for="(panelist, index) in panelists"
+                :key="index"
+                size="125"
             >
-                <v-chip
-                    v-for="choice in choices"
-                    :key="choice"
-                    :value="choice"
-                    large
+                <img 
+                    :src="panelist.profileImagePath"
+                />
+            </v-avatar>
+            <!-- 選択肢表示エリア -->
+            <v-card-title>選択肢</v-card-title>
+            <v-card-text>
+                <v-radio-group
+                    v-model="selection"
+                    hide-details
                 >
-                    {{ choice }}
-                </v-chip>
-            </v-chip-group>
-        </v-card-text>
-        <v-card-actions
-            class="d-flex justify-center"
-        >
-            <v-btn
-                color="deep-purple lighten-2"
-                text
-                @click="sendAnswer"
+                    <v-radio
+                        v-for="choice in choices"
+                        :key="choice"
+                        :value="choice"
+                        :label="choice"
+                    />
+                </v-radio-group>
+            </v-card-text>
+            <v-card-actions
+                class="d-flex justify-center"
             >
-                回答を送信する
-            </v-btn>
-        </v-card-actions>
+                <v-btn
+                    color="deep-purple lighten-2"
+                    text
+                    @click="sendAnswer"
+                >
+                    回答を送信する
+                </v-btn>
+            </v-card-actions>
+        </div>
+    </div>
     </v-card>
 </template>
 
 <script>
+import UserInfoCard from './UserInfoCard'
+
 export default {
     props: {
         question: {
@@ -55,7 +66,14 @@ export default {
         choices: {
             type: Array,
             required: true,
+        },
+        panelists: {
+            type: Array,
+            required: false,
         }
+    },
+    components: {
+        UserInfoCard
     },
     data() {
         return {
