@@ -3,10 +3,6 @@
     <v-img
       :src="profileImagePath"
     >
-    <!-- <v-img
-      :src="profileImagePath"
-      height="200px"
-    > -->
         <v-card-title class="white--text">
         {{ userName }}
         </v-card-title>
