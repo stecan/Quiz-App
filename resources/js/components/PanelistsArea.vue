@@ -20,12 +20,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
-const IMAGE_DIR = '/images/';
-const NO_IMAGE = 'NoImage.png';
-const EXTENSION = '.png';
-// const fs = require('fs');
 
 export default {
     props: {
@@ -33,12 +27,6 @@ export default {
             type: Array,
             required: false,
         }
-    },
-    created() {
-        this.getPanelists();
-    },
-    methods: {
-
     },
 }
 </script>
