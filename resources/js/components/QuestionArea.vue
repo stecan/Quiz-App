@@ -61,11 +61,8 @@ export default {
     methods: {
         // 問題抽選
         getQuestion: async function() {
-            await axios.get('/api/axios/getquestion', {
-                params: {
-                    q_id: 1
-                }
-            })
+            // q_kbn = 1の問題を取得
+            await axios.get('/api/axios/getquestion')
                     .then(res => {
                         this.setQuestionData(res.data);
                     })
