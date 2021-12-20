@@ -36,6 +36,7 @@
 
 <script>
 import axios from 'axios';
+axios.defaults.baseURL = '/bingo2021';
 import QuestionArea from '../components/QuestionArea.vue'
 import ChallengerArea from '../components/ChallengerArea.vue'
 import RankingDialog from '../components/RankingDialog.vue';
