@@ -43,9 +43,9 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
 
     // ■運営側
     // 問題抽選
-    Route::get('drawingquestion', $rootMain . '@drawingQuestion')->name('drawing.question');
+    Route::post('drawingquestion', $rootMain . '@drawingQuestion')->name('drawing.question');
     // 回答者抽選
-    Route::get('drawingplayer', $rootMain . '@drawingPlayer')->name('drawing.player');
+    Route::post('drawingplayer', $rootMain . '@drawingPlayer')->name('drawing.player');
     // 回答確認
     Route::get('checkanswer', $rootMain . '@checkAnswer')->name('check.answer');
     // 解答開示
