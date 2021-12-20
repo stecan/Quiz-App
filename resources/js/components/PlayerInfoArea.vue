@@ -1,23 +1,12 @@
 <template>
-    <v-row>
-        <v-col>Player</v-col>
-        <v-col>{{ userId }}</v-col>
-        <v-col>{{ userName }}</v-col>
-    </v-row>
+  <v-app-bar flat>
+    <v-spacer />
+    <p class="text-h5 mr-5" style="margin: 0">USER : {{ userInfo.user_name }}</p>
+    <p class="text-h5 mr-5" style="margin: 0">SCORE : {{ userInfo.point }}点</p>
+  </v-app-bar>
 </template>
-
 <script>
 export default {
-    props: {
-        userId: {
-            type: String,
-            required:true
-        },
-        userName: {
-            type: String,
-            required: true,
-            default: "ゲスト"
-        }
-    }
-}
+  props: ["userInfo"],
+};
 </script>
