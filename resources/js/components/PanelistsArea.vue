@@ -14,7 +14,11 @@
             />
         </v-avatar>
     </div>
-    <div v-else>回答者が決定していません。</div>
+    <div v-else>
+        <v-card-text>
+            回答者が決定していません。
+        </v-card-text>
+    </div>
 
 </div>
 </template>

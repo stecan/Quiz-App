@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 const TextButton = () => import('./common/TextButton');
 export default {
     components:{
@@ -44,10 +45,21 @@ export default {
         }
     },
     methods: {
-        sendAnswer: function() {
+        sendAnswer: async function() {
             if (window.confirm("選択している回答：" + this.selection + "\n回答を送信します。\nよろしいですか？")) {
                 // TODO: 回答送信のAPIを叩く
-                console.log(this.selection + "が送信されました。");
+                await axios.post('/api/axios/sendanswer', {
+                                params: {
+                                    my_user_id: "",
+                                    my_answer: this.selection,
+                                }
+                            })
+                        .then(res => {
+                            console.log(this.selection + "が送信されました。");
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
             }
             return false;
         }
