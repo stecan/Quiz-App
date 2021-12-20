@@ -2,15 +2,10 @@
   <div>
     <v-app-bar id="app-bar" absolute app>
       <v-spacer />
-      <v-btn
-        class="mr-5"
-        color="primary"
-        outlined
-        x-large
-        @click="getFollowerList"
+      <v-btn class="mr-5" color="primary" outlined x-large @click="getFollowerList"
         >再選択</v-btn
       >
-      <v-btn color="red" outlined x-large>確定</v-btn>
+      <v-btn to="/game" color="red" outlined x-large>確定</v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -39,18 +34,25 @@ export default {
   data() {
     return {
       overlay: false,
-      cardList: "",
+      cardList: [],
     };
   },
   methods: {
     async getFollowerList() {
       this.overlay = true;
       await axios
-        .post("/api/axios/drawingcard", {
-          my_user_id: "05010", // ログインユーザーに置き換えが必要
+        .get("/api/axios/drawingcard", {
+          params: {
+            my_user_id: "05010",
+          },
         })
         .then((res) => {
-          this.cardList = res.data;
+          this.cardList = res.data.map((card) => {
+            return {
+              user_name: card.user_name,
+              department: card.department,
+            };
+          });
           this.overlay = false;
         })
         .catch((error) => {
