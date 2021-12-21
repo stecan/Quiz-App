@@ -5,7 +5,9 @@
         <h1 class="display-1">ログイン</h1>
       </v-card-title>
       <v-divider />
-      <v-alert v-if="messagevisible" border="left" text type="error">{{ errorMessage }}</v-alert>
+      <v-alert v-if="messagevisible" border="left" text type="error">{{
+        errorMessage
+      }}</v-alert>
       <v-card-text>
         <v-form>
           <v-text-field
@@ -23,19 +25,16 @@
             hint="社員番号 + 生年月日を入力してください。"
           />
           <v-card-actions>
-            <v-btn
-              class="mt-4"
-              block
-              outlined
-              large
-              color="indigo"
-              @click="loginExec"
+            <v-btn class="mt-4" block outlined large color="indigo" @click="loginExec"
               >ログイン</v-btn
             >
           </v-card-actions>
         </v-form>
       </v-card-text>
     </v-card>
+    <v-overlay :value="overlay">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
   </v-row>
 </template>
 
@@ -47,18 +46,28 @@ export default {
       empNo: "",
       password: "",
       errorMessage: "",
-      messagevisible:false
+      messagevisible: false,
+      overlay: false,
     };
   },
   methods: {
     async loginExec() {
+      this.overlay = true;
       await axios
-        .post(window.location.origin + `/login`, {
+        .post("/api/axios/auth", {
           empNo: this.empNo,
           password: this.password,
         })
-        .then((response) => {})
+        .then((response) => {
+          this.overlay = false;
+          if (this.empNo) {
+            router.push("admin");
+          } else {
+            router.push("followerSelect");
+          }
+        })
         .catch((error) => {
+          this.overlay = false;
           this.messagevisible = true;
           this.errorMessage = "ログインに失敗しました。";
         });
