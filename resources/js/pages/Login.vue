@@ -10,7 +10,7 @@
           errorMessage
         }}</v-alert>
         <v-card-text>
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form ref="form">
             <v-text-field
               label="社員番号"
               v-model="empNo"
@@ -61,6 +61,7 @@ export default {
           .then((response) => {
             this.overlay = false;
             if (response.data) {
+              this.$store.commit("setUserId", this.empNo);
               if (this.empNo == "99999") {
                 this.$router.push("admin");
               } else {
