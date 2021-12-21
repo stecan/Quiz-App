@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], function () {
     $rootMain = 'App\Http\Controllers\AxiosMainController';
+    // 認証
+    Route::post('auth', $rootMain . '@auth')->name('send.auth');
     // ■プレイヤー側
     // プレイヤー情報取得
     Route::get('getuser', $rootMain . '@getUser')->name('get.user');

@@ -16,6 +16,15 @@ class AxiosMainController extends Controller
     public static $_followerMax = 20;
     // 回答者最大数
     public static $_challengerMax = 3;
+    // Auth
+    public function Auth(Request $request){
+        $myId = $request['emp_no'];
+        $myPassword = $request['password'];
+
+        return m_user::where('user_id', '=', $myId)
+        ->where('password', '=', $myPassword)
+        ->exists();
+    }
 
     // プレイヤー情報取得
     public function getUser(Request $request)
