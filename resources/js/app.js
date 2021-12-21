@@ -1,11 +1,13 @@
 import Vue from "vue";
 import vuetify from "./vuetify";
 import router from "./router";
-import store from './store'
+import Slick from 'vue-slick';
 
 const app = new Vue({
     el: "#app",
     router,
-    vuetify,
-    store
+    vuetify, Slick,
+    components: {
+
+    },
 });
