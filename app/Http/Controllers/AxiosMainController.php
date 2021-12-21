@@ -77,11 +77,11 @@ class AxiosMainController extends Controller
         $myId = $request['my_user_id']; // ログインユーザID
 
         // 手札情報取得
-        $result = t_follower::join('m_user', function($join) {
+        $result = t_follower::join('m_user', function($join) use ($myId) {
             $join->on('t_follower.follower_user_id', '=', 'm_user.user_id')
               ->where('t_follower.user_id', '=', $myId);
         })->select([
-            'm_user.follower_user_id as user_id',
+            'm_user.user_id as user_id',
             'm_user.user_name as user_name',
             'm_user.department as department',
         ])
