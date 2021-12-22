@@ -1,20 +1,21 @@
 <template>
-   <v-card
-    width="100%"
-   >
-    <v-img
-      :src="profileImagePath"
-      height="200px"
+    <v-card
+        height="230"
     >
-        <v-card-title class="white--text">
-        {{ userName }}
-        </v-card-title>
-
-        <v-card-subtitle class="white--text">
+        <v-img
+            height="150"
+            :src="profileImagePath"
+        >
+        </v-img>
+        <v-card-text class="mb-0 pb-0 text-left">
             {{ department }}
-        </v-card-subtitle>
-    </v-img>
-  </v-card>   
+        </v-card-text>
+        <v-card-text class="mt-0 pt-0 text-left">
+            {{ userName }}
+        </v-card-text>
+
+
+    </v-card>
 </template>
 
 <script>
@@ -32,7 +33,6 @@ export default {
             type: String,
             required: true,
         }
-    }
-    
+    },
 }
 </script>
