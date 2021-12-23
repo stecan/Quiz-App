@@ -16,8 +16,8 @@
       <router-view />
     </v-app>
   </div>
-  <script src="js/jquery.js"></script>
-  <script src="js/slick.min.js"></script>
+  <script src="{{ asset('js/jquery.js') }}"></script>
+  <script src="{{ asset('js/slick.min.js') }}"></script>
   <script src="{{ asset(mix('js/app.js')) }}"></script>
 </body>
 

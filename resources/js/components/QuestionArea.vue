@@ -35,8 +35,8 @@ const ChoicesArea = () => import("./ChoicesArea")
 
 const IMAGE_DIR = '/images/';
 const NO_IMAGE = 'NoImage.png';
-const QUESTION_SUFFIX = '_question.png';
-const ANSWER_SUFFIX = '_answer.png';
+const QUESTION_SUFFIX = 'quiz';
+const ANSWER_SUFFIX = 'ans_quiz';
 
 export default {
     /* コンポーネント */
@@ -86,8 +86,8 @@ export default {
             this.aDispFlg = question.a_disp_flg;
             this.qText = question.q_text;
             this.choices = new Array(question.option_1, question.option_2, question.option_3)
-            this.qImgPath = IMAGE_DIR + question.q_id + QUESTION_SUFFIX;
-            this.aImgPath = IMAGE_DIR + question.q_id + ANSWER_SUFFIX;
+            this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + ".JPG";
+            this.aImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + ".JPG";
         },
         setPanelists: function(panelists) {
             this.panelists = panelists.map(panelist => {

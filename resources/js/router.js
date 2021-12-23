@@ -10,8 +10,8 @@ export default new VueRouter({
     mode: 'history',
     base: '/bingo2021/',
     routes: [
-        { path: '/login', name: 'login', component: Login, },
-        { path: '/', name: 'game', component: Game, },
+        { path: '/', name: 'login', component: Login, },
+        { path: '/game', name: 'game', component: Game, },
         { path: '/admin', name: 'admin', component: Admin, },
     ]
 })
