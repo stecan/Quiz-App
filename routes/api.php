@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], function () {
+Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], function ($subdir) {
     $rootMain = 'App\Http\Controllers\AxiosMainController';
     // 認証
     Route::post('auth', $rootMain . '@auth')->name('send.auth');
@@ -52,4 +52,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
     Route::get('checkanswer', $rootMain . '@checkAnswer')->name('check.answer');
     // 解答開示
     Route::post('takeanswer', $rootMain . '@takeAnswer')->name('take.answer');
+
+    // reset
+    Route::post('resetsystem', $rootMain . '@resetSystem')->name('reset.system');
 });

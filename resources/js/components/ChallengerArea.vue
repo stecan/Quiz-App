@@ -2,7 +2,7 @@
     <v-row>
         <v-col  v-for="(user, index) in challengers" :key="index">
             <v-card max-width="200px">
-                <user-info-card :profileImagePath="userImgPath + user.user_id + '.png'" :userName="user.user_name" :department="user.department"></user-info-card>
+                <user-info-card :profileImagePath="userImgPath + user.user_id + '.jpg'" :userName="user.user_name" :department="user.department"></user-info-card>
             </v-card>
         </v-col>
     </v-row>
@@ -25,7 +25,7 @@ export default {
     },
     data:() => ({
         /* 初期処理 */
-        userImgPath: '/images/',
+        userImgPath: asset('/images/player'),
         challengers: [],
         result: null,
     }),

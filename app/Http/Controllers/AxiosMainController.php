@@ -348,6 +348,36 @@ class AxiosMainController extends Controller
         return $players;
     }
 
+    // システムのリセット
+    public function resetSystem(Request $request)
+    {
+        if($request['reset_pass'] == 'bingo2021system')
+        {
+            // ユーザマスタ リセット
+            $update = [
+                'a_kbn' => 0,
+                'answer'=> 0,
+                'point' => 0,
+            ];
+            DB::table('m_user')
+                ->update($update);
+
+            // 問題テーブル リセット
+            $update = [
+                'q_kbn' => 0,
+                'a_disp_flg'=> false,
+            ];
+            DB::table('t_question')
+                ->update($update);
+
+            // 回答履歴 リセット
+            t_answer::truncate();
+
+            // 手札テーブル リセット
+            t_follower::truncate();
+        }
+    }
+
     // private:抽選
     function drawing($list, int $count) :array
     {
@@ -380,5 +410,4 @@ class AxiosMainController extends Controller
 
         return $result;
     }
-
 }

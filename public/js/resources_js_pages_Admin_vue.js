@@ -2105,8 +2105,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   prpps: {},
@@ -2203,8 +2203,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 // 利用コンポーネントのローカル定義 import
- //axios.defaults.baseURL = '/bingo2021';
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2221,7 +2221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       /* 初期処理 */
-      userImgPath: '/images/',
+      userImgPath: asset('/images/player'),
       challengers: [],
       result: null
     };
@@ -2329,7 +2329,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
+
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 var QuestionImage = function QuestionImage() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_common_QuestionImage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./common/QuestionImage */ "./resources/js/components/common/QuestionImage.vue"));
@@ -2343,10 +2344,10 @@ var ChoicesArea = function ChoicesArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_ChoicesArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./ChoicesArea */ "./resources/js/components/ChoicesArea.vue"));
 };
 
-var IMAGE_DIR = '/images/';
+var IMAGE_DIR = asset('/images/');
 var NO_IMAGE = 'NoImage.png';
-var QUESTION_SUFFIX = 'quiz';
-var ANSWER_SUFFIX = 'ans_quiz';
+var QUESTION_SUFFIX = 'quiz/quiz';
+var ANSWER_SUFFIX = 'answer/ans_quiz';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   /* コンポーネント */
   components: {
@@ -2441,7 +2442,7 @@ var ANSWER_SUFFIX = 'ans_quiz';
       this.qText = question.q_text;
       this.choices = new Array(question.option_1, question.option_2, question.option_3);
       this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + ".JPG";
-      this.aImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + ".JPG";
+      this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + ".JPG";
     },
     setPanelists: function setPanelists(panelists) {
       this.panelists = panelists.map(function (panelist) {
@@ -2508,8 +2509,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -2524,7 +2525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      userImgPath: '/images/',
+      userImgPath: asset('/images/player/'),
       rankings: [],
       result: null
     };
@@ -2697,8 +2698,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 
 
@@ -4334,7 +4335,7 @@ var render = function () {
             [
               _c("user-info-card", {
                 attrs: {
-                  profileImagePath: _vm.userImgPath + user.user_id + ".png",
+                  profileImagePath: _vm.userImgPath + user.user_id + ".jpg",
                   userName: user.user_name,
                   department: user.department,
                 },

@@ -2116,7 +2116,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
+
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 var CardListArea = function CardListArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_CardListArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/CardListArea */ "./resources/js/components/CardListArea.vue"));
@@ -2126,7 +2127,7 @@ var QuestionArea = function QuestionArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_QuestionArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/QuestionArea */ "./resources/js/components/QuestionArea.vue"));
 };
 
-var IMAGE_DIR = '/images/';
+var IMAGE_DIR = asset('/images/');
 var NO_IMAGE = 'NoImage.png';
 var EXTENSION = '.png';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2162,7 +2163,7 @@ var EXTENSION = '.png';
                 _context.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/getcard', {
                   params: {
-                    my_user_id: "04660"
+                    my_user_id: "00020"
                   }
                 }).then(function (res) {
                   _this.setCardList(res.data);

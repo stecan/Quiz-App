@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const glob = require('glob');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +12,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .vue()
-    .sass('resources/sass/app.scss', 'public/css');
+mix.setResourceRoot('/bingo2021/')
+    .js('resources/js/app.js', 'public/js')
+    .js('resources/js/router.js', 'public/js')
+    .js('resources/js/store.js', 'public/js')
+    .js('resources/js/vuetify.js', 'public/js')
+    .js('resources/js/bootstrap.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .vue();

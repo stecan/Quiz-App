@@ -1,4 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/router.js": "/js/router.js",
+    "/js/store.js": "/js/store.js",
+    "/js/vuetify.js": "/js/vuetify.js",
+    "/js/bootstrap.js": "/js/bootstrap.js",
     "/css/app.css": "/css/app.css"
 }
