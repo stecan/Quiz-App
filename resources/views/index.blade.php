@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Laravel</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}" />
+  <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}" />
+  <link rel="stylesheet" href="{{asset('css/slick.css')}}" />
 </head>
 
 <body>
@@ -14,7 +16,9 @@
       <router-view />
     </v-app>
   </div>
-  <script src="{{ asset(mix('js/app.js')) }}"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>

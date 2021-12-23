@@ -24,7 +24,7 @@ export default {
       slickOptions: {
         autoplay: true,
         infinite: true,
-        speed: 450,
+        speed: 300,
         slidesToShow: 10,
         slidesToScroll: 3,
         responsive: [
