@@ -77187,7 +77187,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Login_vue":1,"resources_js_pages_Game_vue":1,"resources_js_pages_Admin_vue":1,"resources_js_components_CardListArea_vue":1,"resources_js_components_QuestionArea_vue":1,"resources_js_components_common_QuestionImage_vue":1,"resources_js_components_PanelistsArea_vue":1,"resources_js_components_ChoicesArea_vue":1,"resources_js_components_common_TextButton_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Login_vue":1,"resources_js_pages_Game_vue":1,"resources_js_pages_Admin_vue":1,"resources_js_components_CardListArea_vue":1,"resources_js_components_QuestionArea_vue":1,"resources_js_components_common_QuestionImage_vue":1,"resources_js_components_PanelistsArea_vue":1,"resources_js_components_ChoicesArea_vue":1,"resources_js_components_common_TextButton_vue":1}[chunkId]) return "bingo2021/js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
