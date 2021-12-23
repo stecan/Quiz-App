@@ -22,6 +22,7 @@ class CreateMUserTable extends Migration
             $table->integer('point');
             $table->char('a_kbn',1);
             $table->boolean('answer');
+            $table->boolean('admin_flg');
             $table->timestamps();
         });
     }

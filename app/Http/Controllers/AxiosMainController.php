@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\m_user;
 use App\Models\t_answer;
@@ -15,7 +16,27 @@ class AxiosMainController extends Controller
     public static $_followerMax = 20;
     // 回答者最大数
     public static $_challengerMax = 3;
+    // Auth
+    public function Auth(Request $request){
+        $myId = $request['emp_no'];
+        $myPassword = $request['password'];
 
+        return m_user::where('user_id', '=', $myId)
+        ->where('password', '=', $myPassword)
+        ->exists();
+    }
+
+    // プレイヤー情報取得
+    public function getUser(Request $request)
+    {
+        $myId = $request['my_user_id']; // ログインユーザID
+
+        // ユーザ情報取得
+        $player = m_user::where('user_id', '=', $myId)
+        ->first();
+
+        return $player;
+    }
 
     // 手札抽選
     public function drawingCard(Request $request)
@@ -29,12 +50,12 @@ class AxiosMainController extends Controller
             'user_name',
             'department',
         ])
-        ->where('a_kbn', '=', '1')
+        ->where('a_kbn', '<>', '0')
         ->where('user_id', '<>', $myId) /* 自分は抽選対象にしない */
         ->get();
 
         // 抽選
-        $result = drawing($players, $_followerMax);
+        $result = self::drawing($players, self::$_followerMax);
 
         // 手札登録
         t_follower::where('user_id', $myId)->delete();
@@ -56,11 +77,11 @@ class AxiosMainController extends Controller
         $myId = $request['my_user_id']; // ログインユーザID
 
         // 手札情報取得
-        $result = t_follower::join('m_user', function($join) {
+        $result = t_follower::join('m_user', function($join) use ($myId) {
             $join->on('t_follower.follower_user_id', '=', 'm_user.user_id')
               ->where('t_follower.user_id', '=', $myId);
         })->select([
-            'm_user.follower_user_id as user_id',
+            'm_user.user_id as user_id',
             'm_user.user_name as user_name',
             'm_user.department as department',
         ])
@@ -104,15 +125,16 @@ class AxiosMainController extends Controller
     // 問題取得
     public function getQuestion(Request $request)
     {
-        $result = t_question::select([
-            'q_id',
-            'q_text',
-            'option_1',
-            'option_2',
-            'option_3',
-        ])
-        ->where('q_kbn', '=', '1') /* 出題中 */
-        ->first();
+        $result = null;
+
+        if(isset($request['q_id']))
+        {
+            $result = t_question::where('q_id', '=', $request['q_id'])->first();
+        }
+        else
+        {
+            $result = t_question::where('q_kbn', '=', '1')->first();
+        }
 
         if($result == null)
         {
@@ -137,7 +159,7 @@ class AxiosMainController extends Controller
         $players = m_user::where('a_kbn', '=', '1')->get();
 
         // 抽選
-        $result = AxiosMainController::drawing($players, AxiosMainController::$_challengerMax);
+        $result = self::drawing($players, self::$_challengerMax);
 
         // 回答者情報登録
         foreach ($result as $data)
@@ -299,19 +321,32 @@ class AxiosMainController extends Controller
     public function getRanking(Request $request)
     {
         // ランキング情報取得
-        $result = m_user::m_user::select([
+        $result = m_user::select([
             'user_id',
             'user_name',
             'department',
             'point',
-            DB::raw('(select count(point) FROM m_user b WHERE m_user.score < b.score) + 1 as rank'),
+            DB::raw('(select count(point) FROM m_user b WHERE m_user.point < b.point) + 1 as rank'),
         ])->where('a_kbn', '<>', '0')
-        ->orderBy('point', 'desc')
-        ->get();
+        ->orderByRaw('point desc, user_id asc')
+        ->take(10)->get();
 
         return $result;
     }
 
+    // 回答確認
+    public function checkAnswer(Request $request)
+    {
+        // 回答中対象ユーザ情報取得
+        $players = m_user::where('a_kbn', '=', '2')
+        ->select([
+            'user_id',
+            'user_name',
+            'answer',
+        ])->get();
+
+        return $players;
+    }
 
     // private:抽選
     function drawing($list, int $count) :array
@@ -337,8 +372,8 @@ class AxiosMainController extends Controller
                 {
                     continue; // 重複除く
                 }
-                $exist += $player->id;
-                $result += $player;
+                $exist[] = $player->id;
+                $result[] = $player;
                 break;
             }
         }

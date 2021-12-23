@@ -20,11 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], function () {
     $rootMain = 'App\Http\Controllers\AxiosMainController';
+    // 認証
+    Route::post('auth', $rootMain . '@auth')->name('send.auth');
     // ■プレイヤー側
-    // TODO プレイヤー情報取得
-
+    // プレイヤー情報取得
+    Route::get('getuser', $rootMain . '@getUser')->name('get.user');
     // 手札抽選
-    Route::post('drawingcard', $rootMain . '@drawingCard')->name('drawing.card');
+    Route::get('drawingcard', $rootMain . '@drawingCard')->name('drawing.card');
     // TODO 手札抽選終了
     // 手札取得
     Route::get('getcard', $rootMain . '@getCard')->name('get.card');
@@ -43,10 +45,11 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
 
     // ■運営側
     // 問題抽選
-    Route::get('drawingquestion', $rootMain . '@drawingQuestion')->name('drawing.question');
+    Route::post('drawingquestion', $rootMain . '@drawingQuestion')->name('drawing.question');
     // 回答者抽選
-    Route::get('drawingplayer', $rootMain . '@drawingPlayer')->name('drawing.player');
-    // TODO 回答確認
+    Route::post('drawingplayer', $rootMain . '@drawingPlayer')->name('drawing.player');
+    // 回答確認
+    Route::get('checkanswer', $rootMain . '@checkAnswer')->name('check.answer');
     // 解答開示
     Route::post('takeanswer', $rootMain . '@takeAnswer')->name('take.answer');
 });
