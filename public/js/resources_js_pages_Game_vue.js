@@ -2114,8 +2114,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -3271,12 +3269,7 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-row",
-            { staticClass: "ma-5" },
-            [_c("card-list-area", { attrs: { cardList: _vm.cardList } })],
-            1
-          ),
+          _c("card-list-area", { attrs: { cardList: _vm.cardList } }),
         ],
         1
       ),
