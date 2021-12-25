@@ -45,6 +45,11 @@ export default {
     };
   },
   created() {
+    if(this.$store.state.userId == null ||this.$store.state.userId == "")
+    {
+      this.$router.push("login");
+      return;
+    }
     this.getCardList();
   },
   methods: {
