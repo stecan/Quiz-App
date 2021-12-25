@@ -3298,7 +3298,7 @@ var render = function () {
                               return !!v || "パスワードは必須です"
                             },
                           ],
-                          hint: "社員番号 + 生年月日を入力してください。",
+                          hint: "PS2021＋生まれ年（yyyy)を入力してください。",
                         },
                         model: {
                           value: _vm.password,
