@@ -2122,6 +2122,9 @@ var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE: NO_IMAGE,
+      EXTENSION: EXTENSION,
       overlay: false,
       cardList: []
     };
@@ -3264,7 +3267,7 @@ var render = function () {
                         "v-card",
                         { attrs: { "max-width": "220px" } },
                         [
-                          _c("img", {
+                          _c("v-img", {
                             attrs: {
                               height: "200px",
                               src: _vm.IMAGE_DIR + card.user_id + _vm.EXTENSION,

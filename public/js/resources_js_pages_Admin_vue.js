@@ -2351,6 +2351,8 @@ var IMAGE_DIR = './images/';
 var NO_IMAGE = 'NoImage.png';
 var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';
+var EXTENSION = '.JPG';
+var EXTENSION_USER = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   /* コンポーネント */
   components: {
@@ -2444,12 +2446,12 @@ var ANSWER_SUFFIX = 'answer/ans_quiz';
       this.aDispFlg = question.a_disp_flg;
       this.qText = question.q_text;
       this.choices = new Array(question.option_1, question.option_2, question.option_3);
-      this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + ".JPG";
-      this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + ".JPG";
+      this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION;
+      this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + EXTENSION;
     },
     setPanelists: function setPanelists(panelists) {
       this.panelists = panelists.map(function (panelist) {
-        imgDir = IMAGE_DIR + panelist.user_id + EXTENSION;
+        imgDir = IMAGE_DIR + panelist.user_id + EXTENSION_USER;
         return {
           profileImagePath: imgDir
         }; // ほんとはこう書きたい
@@ -2531,6 +2533,9 @@ var EXTENSION = '.jpg';
   },
   data: function data() {
     return {
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE: NO_IMAGE,
+      EXTENSION: EXTENSION,
       rankings: [],
       result: null
     };

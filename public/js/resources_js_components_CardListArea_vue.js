@@ -29,6 +29,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+var IMAGE_DIR = './images/player/';
+var NO_IMAGE = 'NoImage.png';
+var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["cardList"],
   components: {
@@ -36,6 +39,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE: NO_IMAGE,
+      EXTENSION: EXTENSION,
       slickOptions: {
         autoplay: true,
         infinite: true,
@@ -11103,7 +11109,7 @@ var render = function () {
                 attrs: {
                   height: "180",
                   contain: "",
-                  src: "https://wired.jp/app/uploads/2018/01/GettyImages-522585140.webp",
+                  src: _vm.IMAGE_DIR + card.user_id + _vm.EXTENSION,
                 },
               }),
               _vm._v(" "),

@@ -6,7 +6,7 @@
           class="grey darken-3"
           height="180"
           contain
-          src="https://wired.jp/app/uploads/2018/01/GettyImages-522585140.webp"
+          :src="IMAGE_DIR + card.user_id + EXTENSION"
         />
         <v-card-title class="pt-1">{{ card.user_name }}</v-card-title>
         <v-card-subtitle class="pb-1">{{ card.department }}</v-card-subtitle>
@@ -16,11 +16,19 @@
 </template>
 <script>
 import Slick from "vue-slick";
+
+const IMAGE_DIR = './images/player/';
+const NO_IMAGE = 'NoImage.png';
+const EXTENSION = '.jpg';
+
 export default {
   props: ["cardList"],
   components: { Slick },
   data() {
     return {
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE : NO_IMAGE,
+      EXTENSION: EXTENSION,
       slickOptions: {
         autoplay: true,
         infinite: true,

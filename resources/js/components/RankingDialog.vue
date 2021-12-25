@@ -38,6 +38,9 @@ export default {
         dialog:{type: Boolean, default: false},
     },
     data:() => ({
+        IMAGE_DIR: IMAGE_DIR,
+        NO_IMAGE : NO_IMAGE,
+        EXTENSION: EXTENSION,
         rankings:[],
         result: null,
     }),

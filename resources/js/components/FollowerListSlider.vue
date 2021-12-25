@@ -2,7 +2,7 @@
   <Slick ref="slick" :options="slickOptions" class="slick-outer">
     <div v-for="card in cardList" :key="card.id" class="image-thumb">
       <v-card outlined flat height="250" min-width="180">
-        <img
+        <v-img
           class="grey darken-3"
           height="180"
           contain
@@ -26,6 +26,9 @@ export default {
   components: { Slick },
   data() {
     return {
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE : NO_IMAGE,
+      EXTENSION: EXTENSION,
       slickOptions: {
         autoplay: true,
         infinite: true,

@@ -38,6 +38,8 @@ const IMAGE_DIR = './images/';
 const NO_IMAGE = 'NoImage.png';
 const QUESTION_SUFFIX = 'quiz/quiz';
 const ANSWER_SUFFIX = 'answer/ans_quiz';
+const EXTENSION = '.JPG';
+const EXTENSION_USER = '.jpg';
 
 export default {
     /* コンポーネント */
@@ -87,12 +89,12 @@ export default {
             this.aDispFlg = question.a_disp_flg;
             this.qText = question.q_text;
             this.choices = new Array(question.option_1, question.option_2, question.option_3)
-            this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + ".JPG";
-            this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + ".JPG";
+            this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION;
+            this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + EXTENSION;
         },
         setPanelists: function(panelists) {
             this.panelists = panelists.map(panelist => {
-                imgDir = IMAGE_DIR + panelist.user_id + EXTENSION;
+                imgDir = IMAGE_DIR + panelist.user_id + EXTENSION_USER;
                 return {
                     profileImagePath: imgDir
                 }

@@ -12,7 +12,7 @@
         <v-row
           ><v-col cols="12" xs="12" sm="4" md="3" v-for="card in cardList" :key="card.id"
             ><v-card max-width="220px">
-              <img
+              <v-img
                 height="200px"
                 :src="IMAGE_DIR + card.user_id + EXTENSION" />
               <v-card-title>{{ card.user_name }}</v-card-title>
@@ -38,6 +38,9 @@ const EXTENSION = '.jpg';
 export default {
   data() {
     return {
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE : NO_IMAGE,
+      EXTENSION: EXTENSION,
       overlay: false,
       cardList: [],
     };
