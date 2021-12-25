@@ -61,14 +61,13 @@ var Admin = function Admin() {
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  //base : process.env.BASE_URL,
   base: 'bingo2021',
   routes: [{
-    path: '/',
+    path: '/login',
     name: 'login',
     component: Login
   }, {
-    path: '/game',
+    path: '/',
     name: 'game',
     component: Game
   }, {

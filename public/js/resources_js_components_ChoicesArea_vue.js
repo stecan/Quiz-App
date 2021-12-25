@@ -88,7 +88,7 @@ var TextButton = function TextButton() {
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/sendanswer', {
                   params: {
-                    my_user_id: "",
+                    my_user_id: this.$store.state.userId,
                     my_answer: this.selection
                   }
                 }).then(function (res) {

@@ -44,7 +44,7 @@ export default {
       await axios
         .get("/api/axios/drawingcard", {
           params: {
-            my_user_id: "05010",
+            my_user_id: this.$store.state.userId,
           },
         })
         .then((res) => {

@@ -48,10 +48,9 @@ export default {
     methods: {
         sendAnswer: async function() {
             if (window.confirm("選択している回答：" + this.selection + "\n回答を送信します。\nよろしいですか？")) {
-                // TODO: 回答送信のAPIを叩く
                 await axios.post('/api/axios/sendanswer', {
                                 params: {
-                                    my_user_id: "",
+                                    my_user_id: this.$store.state.userId,
                                     my_answer: this.selection,
                                 }
                             })

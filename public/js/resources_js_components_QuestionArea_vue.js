@@ -63,7 +63,7 @@ var ChoicesArea = function ChoicesArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_ChoicesArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./ChoicesArea */ "./resources/js/components/ChoicesArea.vue"));
 };
 
-var IMAGE_DIR = asset('/images/');
+var IMAGE_DIR = './images/';
 var NO_IMAGE = 'NoImage.png';
 var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';

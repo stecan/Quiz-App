@@ -1,6 +1,7 @@
 <template>
     <div>
-        <v-container style="background-repeat:repeat; background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrEtiRUI7c3D-z3dIu4fJq29QPppfMK6KapQ&usqp=CAU');">
+        <!-- <v-container style="background-repeat:repeat; background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrEtiRUI7c3D-z3dIu4fJq29QPppfMK6KapQ&usqp=CAU');"> -->
+        <v-container>
             <v-row>
                 <v-col>
                     <v-btn rounded elevation="10" @click="drawingQuestion">問題抽選</v-btn>

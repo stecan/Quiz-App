@@ -34,7 +34,7 @@ export default {
         dialog:{type: Boolean, default: false},
     },
     data:() => ({
-        userImgPath: asset('/images/player/'),
+        userImgPath: './images/player/',
         rankings:[],
         result: null,
     }),

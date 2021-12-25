@@ -33,7 +33,7 @@ const QuestionImage = () => import("./common/QuestionImage")
 const PanelistsArea = () => import("./PanelistsArea")
 const ChoicesArea = () => import("./ChoicesArea")
 
-const IMAGE_DIR = asset('/images/');
+const IMAGE_DIR = './images/';
 const NO_IMAGE = 'NoImage.png';
 const QUESTION_SUFFIX = 'quiz/quiz';
 const ANSWER_SUFFIX = 'answer/ans_quiz';

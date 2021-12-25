@@ -24,7 +24,7 @@ axios.defaults.baseURL = '/bingo2021';
 const CardListArea = () => import("../components/CardListArea");
 const QuestionArea = () => import("../components/QuestionArea");
 
-const IMAGE_DIR = asset('/images/');
+const IMAGE_DIR = './images/';
 const NO_IMAGE = 'NoImage.png';
 const EXTENSION = '.png';
 
@@ -51,7 +51,7 @@ export default {
     getCardList: async function() {
           await axios.get('/api/axios/getcard', {
               params: {
-                my_user_id: "00020"
+                my_user_id: this.$store.state.userId,
               }
             })
               .then(res => {

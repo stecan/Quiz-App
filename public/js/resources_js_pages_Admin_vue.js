@@ -2221,7 +2221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       /* 初期処理 */
-      userImgPath: asset('/images/player'),
+      userImgPath: './images/player',
       challengers: [],
       result: null
     };
@@ -2344,7 +2344,7 @@ var ChoicesArea = function ChoicesArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_ChoicesArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./ChoicesArea */ "./resources/js/components/ChoicesArea.vue"));
 };
 
-var IMAGE_DIR = asset('/images/');
+var IMAGE_DIR = './images/';
 var NO_IMAGE = 'NoImage.png';
 var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';
@@ -2525,7 +2525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      userImgPath: asset('/images/player/'),
+      userImgPath: './images/player/',
       rankings: [],
       result: null
     };
@@ -2662,6 +2662,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -4568,13 +4569,6 @@ var render = function () {
     [
       _c(
         "v-container",
-        {
-          staticStyle: {
-            "background-repeat": "repeat",
-            "background-image":
-              "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrEtiRUI7c3D-z3dIu4fJq29QPppfMK6KapQ&usqp=CAU')",
-          },
-        },
         [
           _c(
             "v-row",
