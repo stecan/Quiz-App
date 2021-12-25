@@ -1,9 +1,11 @@
 <template>
     <v-card
-        height="230"
+         outlined flat height="250" min-width="180"
     >
         <v-img
-            style="height:150px;width: aoto"
+            class="grey darken-3"
+            height="180"
+            contain
             :src="profileImagePath"
         >
         </v-img>

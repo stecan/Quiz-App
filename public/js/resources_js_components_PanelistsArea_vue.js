@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     panelists: {
@@ -139,7 +140,15 @@ var render = function () {
             return _c(
               "v-avatar",
               { key: index, staticClass: "ma-2", attrs: { size: "125" } },
-              [_c("img", { attrs: { src: panelist.profileImagePath } })]
+              [
+                _c("img", {
+                  attrs: {
+                    height: "250",
+                    "min-width": "180",
+                    src: panelist.profileImagePath,
+                  },
+                }),
+              ]
             )
           }),
           1

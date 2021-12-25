@@ -36,8 +36,8 @@ export default {
       cardList: [...Array(20)].map((_, i) => i + 1).map(value => {
         return {
           profileImagePath: "https://placehold.jp/150x200.png",
-          userName: "テストユーザ" + value,
-          department: "テスト部署" + value,
+          userName: "unknown name",
+          department: "unknown dept",
         }
       })
     };

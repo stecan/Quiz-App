@@ -10,6 +10,7 @@
             size="125"
         >
             <img 
+                height="250" min-width="180"
                 :src="panelist.profileImagePath"
             />
         </v-avatar>

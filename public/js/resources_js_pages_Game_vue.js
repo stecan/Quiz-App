@@ -2140,8 +2140,8 @@ var EXTENSION = '.jpg';
       }).map(function (value) {
         return {
           profileImagePath: "https://placehold.jp/150x200.png",
-          userName: "テストユーザ" + value,
-          department: "テスト部署" + value
+          userName: "unknown name",
+          department: "unknown dept"
         };
       })
     };
