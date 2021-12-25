@@ -4596,7 +4596,7 @@ var render = function () {
     [
       _c("v-img", {
         staticClass: "grey darken-3",
-        attrs: { height: "180", contain: "", src: _vm.profileImagePath },
+        attrs: { height: "250", contain: "", src: _vm.profileImagePath },
       }),
       _vm._v(" "),
       _c("v-card-text", { staticClass: "mb-0 pb-0 text-left" }, [

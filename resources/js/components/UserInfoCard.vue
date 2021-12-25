@@ -4,7 +4,7 @@
     >
         <v-img
             class="grey darken-3"
-            height="180"
+            height="250"
             contain
             :src="profileImagePath"
         >
