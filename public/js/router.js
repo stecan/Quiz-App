@@ -15283,7 +15283,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Login_vue":1,"resources_js_pages_Game_vue":1,"resources_js_pages_Admin_vue":1,"resources_js_components_CardListArea_vue":1,"resources_js_components_QuestionArea_vue":1,"resources_js_components_common_QuestionImage_vue":1,"resources_js_components_PanelistsArea_vue":1,"resources_js_components_ChoicesArea_vue":1,"resources_js_components_common_TextButton_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Login_vue":1,"resources_js_pages_Game_vue":1,"resources_js_pages_Admin_vue":1,"resources_js_pages_FollowerSelect_vue":1,"resources_js_components_CardListArea_vue":1,"resources_js_components_QuestionArea_vue":1,"resources_js_components_common_QuestionImage_vue":1,"resources_js_components_PanelistsArea_vue":1,"resources_js_components_ChoicesArea_vue":1,"resources_js_components_common_TextButton_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -15495,22 +15495,30 @@ var Admin = function Admin() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_Admin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Admin */ "./resources/js/pages/Admin.vue"));
 };
 
+var FollowerSelect = function FollowerSelect() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_FollowerSelect_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/FollowerSelect */ "./resources/js/pages/FollowerSelect.vue"));
+};
+
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   base: 'bingo2021',
   routes: [{
-    path: '/login',
-    name: 'login',
-    component: Login
-  }, {
     path: '/',
     name: 'game',
     component: Game
   }, {
+    path: '/login',
+    name: 'login',
+    component: Login
+  }, {
     path: '/admin',
     name: 'admin',
     component: Admin
+  }, {
+    path: '/followerSelect',
+    name: 'followerSelect',
+    component: FollowerSelect
   }]
 }));
 })();

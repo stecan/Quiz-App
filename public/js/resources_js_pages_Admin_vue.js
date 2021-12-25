@@ -2526,6 +2526,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       userImgPath: './images/player/',
+      extention: 'jpg',
       rankings: [],
       result: null
     };
@@ -4475,7 +4476,8 @@ var render = function () {
                             attrs: {
                               height: "80px",
                               width: "80px",
-                              src: _vm.userImgPath + user.user_id + ".png",
+                              src:
+                                _vm.userImgPath + user.user_id + _vm.extention,
                             },
                           }),
                         ],
