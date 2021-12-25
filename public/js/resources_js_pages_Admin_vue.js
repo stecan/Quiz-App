@@ -2221,7 +2221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       /* 初期処理 */
-      userImgPath: './images/player',
+      userImgPath: './images/player/',
       challengers: [],
       result: null
     };

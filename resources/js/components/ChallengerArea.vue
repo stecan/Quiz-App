@@ -25,7 +25,7 @@ export default {
     },
     data:() => ({
         /* 初期処理 */
-        userImgPath: './images/player',
+        userImgPath: './images/player/',
         challengers: [],
         result: null,
     }),

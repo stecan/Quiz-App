@@ -2127,9 +2127,9 @@ var QuestionArea = function QuestionArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_QuestionArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/QuestionArea */ "./resources/js/components/QuestionArea.vue"));
 };
 
-var IMAGE_DIR = './images/';
+var IMAGE_DIR = './images/player/';
 var NO_IMAGE = 'NoImage.png';
-var EXTENSION = '.png';
+var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     CardListArea: CardListArea,

@@ -24,9 +24,9 @@ axios.defaults.baseURL = '/bingo2021';
 const CardListArea = () => import("../components/CardListArea");
 const QuestionArea = () => import("../components/QuestionArea");
 
-const IMAGE_DIR = './images/';
+const IMAGE_DIR = './images/player/';
 const NO_IMAGE = 'NoImage.png';
-const EXTENSION = '.png';
+const EXTENSION = '.jpg';
 
 export default {
   components: {
