@@ -8,11 +8,9 @@
       </v-col>
     </v-row>
     <!-- 手札表示エリア -->
-    <v-row class="ma-5">
       <card-list-area
         :cardList="cardList"
       />
-    </v-row>
   </v-container>
 </div>
 </template>
