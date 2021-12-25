@@ -2095,7 +2095,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     profileImagePath: {
@@ -3342,8 +3341,8 @@ var render = function () {
     { attrs: { height: "230" } },
     [
       _c("v-img", {
-        staticStyle: { "object-fit": "cover" },
-        attrs: { height: "150", src: _vm.profileImagePath },
+        staticStyle: { height: "150px", width: "aoto" },
+        attrs: { src: _vm.profileImagePath },
       }),
       _vm._v(" "),
       _c("v-card-text", { staticClass: "mb-0 pb-0 text-left" }, [

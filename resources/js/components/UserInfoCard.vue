@@ -3,8 +3,7 @@
         height="230"
     >
         <v-img
-            height="150"
-            style="object-fit: cover"
+            style="height:150px;width: aoto"
             :src="profileImagePath"
         >
         </v-img>
