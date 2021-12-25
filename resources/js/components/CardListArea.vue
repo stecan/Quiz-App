@@ -19,7 +19,9 @@ import Slick from "vue-slick";
 
 export default {
   props: ["cardList"],
-  components: { Slick },
+  components: {
+      Slick,
+  },
   data() {
     return {
       slickOptions: {

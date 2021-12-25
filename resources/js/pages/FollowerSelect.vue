@@ -2,26 +2,18 @@
   <div>
     <v-app-bar id="app-bar" absolute app>
       <v-spacer />
-      <v-btn class="mr-5" color="primary" outlined x-large @click="getFollowerList"
-        >再選択</v-btn
-      >
+      <v-btn class="mr-5" color="primary" outlined x-large @click="getFollowerList">再選択</v-btn>
       <v-btn to="/" color="red" outlined x-large>確定</v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
-        <v-row
-          ><v-col cols="12" xs="12" sm="4" md="3" v-for="card in cardList" :key="card.id"
-            ><v-card max-width="220px">
-              <v-img
-                height="200px"
-                :src="card.img_path" />
-              <v-card-title>{{ card.user_name }}</v-card-title>
-              <v-card-subtitle>{{ card.department }}</v-card-subtitle></v-card
-            ></v-col
-          ></v-row
-        ></v-container
-      ></v-main
-    >
+        <v-row>
+          <v-col cols="12" xs="12" sm="4" md="3" v-for="card in cardList" :key="card.id">
+            <user-info-card :profileImagePath="card.img_path" :userName="card.user_name" :department="card.department" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
     <v-overlay :value="overlay">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>

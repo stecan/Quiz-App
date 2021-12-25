@@ -2106,14 +2106,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 var IMAGE_DIR = './images/player/';
@@ -3261,22 +3253,13 @@ var render = function () {
                       attrs: { cols: "12", xs: "12", sm: "4", md: "3" },
                     },
                     [
-                      _c(
-                        "v-card",
-                        { attrs: { "max-width": "220px" } },
-                        [
-                          _c("v-img", {
-                            attrs: { height: "200px", src: card.img_path },
-                          }),
-                          _vm._v(" "),
-                          _c("v-card-title", [_vm._v(_vm._s(card.user_name))]),
-                          _vm._v(" "),
-                          _c("v-card-subtitle", [
-                            _vm._v(_vm._s(card.department)),
-                          ]),
-                        ],
-                        1
-                      ),
+                      _c("user-info-card", {
+                        attrs: {
+                          profileImagePath: card.img_path,
+                          userName: card.user_name,
+                          department: card.department,
+                        },
+                      }),
                     ],
                     1
                   )
