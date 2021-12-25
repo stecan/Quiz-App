@@ -21,7 +21,7 @@
               label="パスワード"
               v-model="password"
               :rules="[(v) => !!v || 'パスワードは必須です']"
-              hint="社員番号 + 生年月日を入力してください。"
+              hint="PS2021 + 生まれ年(YYYY)を入力してください。"
             />
             <v-card-actions>
               <v-btn class="mt-4" block outlined large color="indigo" @click="loginExec"
