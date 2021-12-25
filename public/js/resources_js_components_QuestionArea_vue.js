@@ -282,18 +282,20 @@ var render = function () {
         _c(
           "div",
           [
-            _c("choices-area", { attrs: { choices: _vm.choices } }),
+            _c("choices-area", {
+              attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
+            }),
             _vm._v(" "),
             _c("panelists-area", {
               directives: [
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.adminFlg,
-                  expression: "adminFlg",
+                  value: _vm.adminFlg == false,
+                  expression: "adminFlg == false",
                 },
               ],
-              attrs: { adminFlg: _vm.adminFlg, panelists: _vm.panelists },
+              attrs: { panelists: _vm.panelists },
             }),
           ],
           1

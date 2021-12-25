@@ -50,6 +50,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -62,6 +64,10 @@ var TextButton = function TextButton() {
     TextButton: TextButton
   },
   props: {
+    adminFlg: {
+      type: Boolean,
+      "default": false
+    },
     choices: {
       type: Array
     }
@@ -223,6 +229,14 @@ var render = function () {
             },
             _vm._l(_vm.choices, function (choice) {
               return _c("v-radio", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.adminFlg == false,
+                    expression: "adminFlg==false",
+                  },
+                ],
                 key: choice,
                 attrs: { value: choice, label: choice },
               })
@@ -235,7 +249,17 @@ var render = function () {
       _vm._v(" "),
       _c(
         "v-card-actions",
-        { staticClass: "d-flex justify-center" },
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.adminFlg == false,
+              expression: "adminFlg==false",
+            },
+          ],
+          staticClass: "d-flex justify-center",
+        },
         [
           _c(
             "v-btn",

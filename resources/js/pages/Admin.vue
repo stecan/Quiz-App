@@ -8,7 +8,7 @@
                 </v-col>
             </v-row>
 
-            <question-area :key="'q' + resetQuestion" />
+            <question-area :adminFlg="true" :key="'q' + resetQuestion" />
 
             <v-row>
                 <v-col>

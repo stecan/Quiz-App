@@ -13,11 +13,11 @@
         <div>
             <!-- 選択肢表示エリア -->
             <choices-area
+                :adminFlg="adminFlg"
                 :choices="choices"
             />
             <!-- 回答者表示エリア -->
-            <panelists-area v-show="adminFlg"
-                :adminFlg="adminFlg"
+            <panelists-area v-show="adminFlg == false"
                 :panelists="panelists"
             />
         </div>

@@ -6,6 +6,7 @@
                 hide-details
             >
                 <v-radio
+                    v-show="adminFlg==false"
                     v-for="choice in choices"
                     :key="choice"
                     :value="choice"
@@ -14,6 +15,7 @@
             </v-radio-group>
         </v-card-text>
         <v-card-actions
+            v-show="adminFlg==false"
             class="d-flex justify-center"
         >
             <v-btn
@@ -36,6 +38,7 @@ export default {
         TextButton,
     },
     props: {
+        adminFlg:{type: Boolean, default: false},
         choices: {
             type: Array,
         },
