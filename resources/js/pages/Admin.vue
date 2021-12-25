@@ -30,6 +30,11 @@
                     <v-btn rounded elevation="10" @click="getRanking">ランキング表示</v-btn>
                 </v-col>
             </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn rounded elevation="10" @click="resetSystem">システムリセット</v-btn>
+                </v-col>
+            </v-row>
         </v-container>
         <ranking-dialog :dialog="dispRanking" />
     </div>
@@ -108,6 +113,24 @@ export default {
         getRanking: function() {
             this.dispRanking = true;
         },
+        resetSystem: async function()
+        {
+            if(!confirm('システムを初期状態に戻します。よろしいですか？'))
+            {
+                return;
+            }
+            var self = this;
+            await axios.post('/api/axios/resetsystem',
+            {
+                reset_pass: 'bingo2021system',
+            }).then(res=>
+            {
+            }).catch(function (error) {
+               console.log(error);
+               return;
+            });
+            alert('システムを初期化しました。');
+        }
     },
 }
 </script>

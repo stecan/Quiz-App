@@ -2224,6 +2224,9 @@ var EXTENSION = '.jpg';
   data: function data() {
     return {
       /* 初期処理 */
+      IMAGE_DIR: IMAGE_DIR,
+      NO_IMAGE: NO_IMAGE,
+      EXTENSION: EXTENSION,
       challengers: [],
       result: null
     };
@@ -2709,6 +2712,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -2837,7 +2845,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // ランキング表示
     getRanking: function getRanking() {
       this.dispRanking = true;
-    }
+    },
+    resetSystem: function () {
+      var _resetSystem = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var self;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (confirm('システムを初期状態に戻します。よろしいですか？')) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
+                self = this;
+                _context4.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/resetsystem', {
+                  reset_pass: 'bingo2021system'
+                }).then(function (res) {})["catch"](function (error) {
+                  console.log(error);
+                  return;
+                });
+
+              case 5:
+                alert('システムを初期化しました。');
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function resetSystem() {
+        return _resetSystem.apply(this, arguments);
+      }
+
+      return resetSystem;
+    }()
   }
 });
 
@@ -4673,6 +4722,27 @@ var render = function () {
                       on: { click: _vm.getRanking },
                     },
                     [_vm._v("ランキング表示")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            [
+              _c(
+                "v-col",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { rounded: "", elevation: "10" },
+                      on: { click: _vm.resetSystem },
+                    },
+                    [_vm._v("システムリセット")]
                   ),
                 ],
                 1

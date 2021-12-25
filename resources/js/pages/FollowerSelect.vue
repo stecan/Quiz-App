@@ -14,7 +14,7 @@
             ><v-card max-width="220px">
               <v-img
                 height="200px"
-                :src="IMAGE_DIR + card.user_id + EXTENSION" />
+                :src="card.img_path" />
               <v-card-title>{{ card.user_name }}</v-card-title>
               <v-card-subtitle>{{ card.department }}</v-card-subtitle></v-card
             ></v-col
@@ -38,9 +38,6 @@ const EXTENSION = '.jpg';
 export default {
   data() {
     return {
-      IMAGE_DIR: IMAGE_DIR,
-      NO_IMAGE : NO_IMAGE,
-      EXTENSION: EXTENSION,
       overlay: false,
       cardList: [],
     };
@@ -59,6 +56,7 @@ export default {
             return {
               user_name: card.user_name,
               department: card.department,
+              img_path: IMAGE_DIR + card.user_id + EXTENSION,
             };
           });
           this.overlay = false;

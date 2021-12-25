@@ -29,6 +29,9 @@ export default {
     },
     data:() => ({
         /* 初期処理 */
+        IMAGE_DIR: IMAGE_DIR,
+        NO_IMAGE : NO_IMAGE,
+        EXTENSION: EXTENSION,
         challengers: [],
         result: null,
     }),

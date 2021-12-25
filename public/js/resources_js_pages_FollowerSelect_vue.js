@@ -2122,9 +2122,6 @@ var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      IMAGE_DIR: IMAGE_DIR,
-      NO_IMAGE: NO_IMAGE,
-      EXTENSION: EXTENSION,
       overlay: false,
       cardList: []
     };
@@ -2148,7 +2145,8 @@ var EXTENSION = '.jpg';
                   _this.cardList = res.data.map(function (card) {
                     return {
                       user_name: card.user_name,
-                      department: card.department
+                      department: card.department,
+                      img_path: IMAGE_DIR + card.user_id + EXTENSION
                     };
                   });
                   _this.overlay = false;
@@ -3268,10 +3266,7 @@ var render = function () {
                         { attrs: { "max-width": "220px" } },
                         [
                           _c("v-img", {
-                            attrs: {
-                              height: "200px",
-                              src: _vm.IMAGE_DIR + card.user_id + _vm.EXTENSION,
-                            },
+                            attrs: { height: "200px", src: card.img_path },
                           }),
                           _vm._v(" "),
                           _c("v-card-title", [_vm._v(_vm._s(card.user_name))]),
