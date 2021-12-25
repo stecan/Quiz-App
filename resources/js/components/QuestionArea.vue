@@ -16,7 +16,8 @@
                 :choices="choices"
             />
             <!-- 回答者表示エリア -->
-            <panelists-area
+            <panelists-area v-show="adminFlg"
+                :adminFlg="adminFlg"
                 :panelists="panelists"
             />
         </div>

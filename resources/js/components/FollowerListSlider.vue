@@ -2,11 +2,11 @@
   <Slick ref="slick" :options="slickOptions" class="slick-outer">
     <div v-for="card in cardList" :key="card.id" class="image-thumb">
       <v-card outlined flat height="250" min-width="180">
-        <v-img
+        <img
           class="grey darken-3"
           height="180"
           contain
-          src="https://wired.jp/app/uploads/2018/01/GettyImages-522585140.webp"
+          :src="IMAGE_DIR + card.user_id + EXTENSION"
         />
         <v-card-title class="pt-1">{{ card.user_name }}</v-card-title>
         <v-card-subtitle class="pb-1">{{ card.department }}</v-card-subtitle>
@@ -16,6 +16,11 @@
 </template>
 <script>
 import Slick from "vue-slick";
+
+const IMAGE_DIR = './images/player/';
+const NO_IMAGE = 'NoImage.png';
+const EXTENSION = '.jpg';
+
 export default {
   props: ["cardList"],
   components: { Slick },

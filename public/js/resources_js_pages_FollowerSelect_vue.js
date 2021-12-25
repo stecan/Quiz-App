@@ -2114,9 +2114,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
+var IMAGE_DIR = './images/player/';
+var NO_IMAGE = 'NoImage.png';
+var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3235,9 +3237,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "v-btn",
-            {
-              attrs: { to: "/game", color: "red", outlined: "", "x-large": "" },
-            },
+            { attrs: { to: "/", color: "red", outlined: "", "x-large": "" } },
             [_vm._v("確定")]
           ),
         ],
@@ -3264,10 +3264,10 @@ var render = function () {
                         "v-card",
                         { attrs: { "max-width": "220px" } },
                         [
-                          _c("v-img", {
+                          _c("img", {
                             attrs: {
                               height: "200px",
-                              src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+                              src: _vm.IMAGE_DIR + card.user_id + _vm.EXTENSION,
                             },
                           }),
                           _vm._v(" "),

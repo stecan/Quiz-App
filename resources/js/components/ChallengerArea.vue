@@ -2,7 +2,7 @@
     <v-row>
         <v-col  v-for="(user, index) in challengers" :key="index">
             <v-card max-width="200px">
-                <user-info-card :profileImagePath="userImgPath + user.user_id + '.jpg'" :userName="user.user_name" :department="user.department"></user-info-card>
+                <user-info-card :profileImagePath="IMAGE_DIR + user.user_id + EXTENSION" :userName="user.user_name" :department="user.department"></user-info-card>
             </v-card>
         </v-col>
     </v-row>
@@ -13,6 +13,10 @@ import axios from 'axios';
 axios.defaults.baseURL = '/bingo2021';
 
 import UserInfoCard from "../components/UserInfoCard.vue"
+
+const IMAGE_DIR = './images/player/';
+const NO_IMAGE = 'NoImage.png';
+const EXTENSION = '.jpg';
 
 export default {
     components: {
@@ -25,7 +29,6 @@ export default {
     },
     data:() => ({
         /* 初期処理 */
-        userImgPath: './images/player/',
         challengers: [],
         result: null,
     }),

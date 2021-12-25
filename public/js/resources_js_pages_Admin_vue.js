@@ -2206,6 +2206,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
+var IMAGE_DIR = './images/player/';
+var NO_IMAGE = 'NoImage.png';
+var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     /* コンポーネント */
@@ -2221,7 +2224,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       /* 初期処理 */
-      userImgPath: './images/player/',
       challengers: [],
       result: null
     };
@@ -2302,6 +2304,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -2511,6 +2514,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
+var IMAGE_DIR = './images/player/';
+var NO_IMAGE = 'NoImage.png';
+var EXTENSION = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -2525,8 +2531,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      userImgPath: './images/player/',
-      extention: 'jpg',
       rankings: [],
       result: null
     };
@@ -4337,7 +4341,8 @@ var render = function () {
             [
               _c("user-info-card", {
                 attrs: {
-                  profileImagePath: _vm.userImgPath + user.user_id + ".jpg",
+                  profileImagePath:
+                    _vm.IMAGE_DIR + user.user_id + _vm.EXTENSION,
                   userName: user.user_name,
                   department: user.department,
                 },
@@ -4389,7 +4394,17 @@ var render = function () {
           [
             _c("choices-area", { attrs: { choices: _vm.choices } }),
             _vm._v(" "),
-            _c("panelists-area", { attrs: { panelists: _vm.panelists } }),
+            _c("panelists-area", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.adminFlg,
+                  expression: "adminFlg",
+                },
+              ],
+              attrs: { adminFlg: _vm.adminFlg, panelists: _vm.panelists },
+            }),
           ],
           1
         ),
@@ -4476,8 +4491,7 @@ var render = function () {
                             attrs: {
                               height: "80px",
                               width: "80px",
-                              src:
-                                _vm.userImgPath + user.user_id + _vm.extention,
+                              src: _vm.IMAGE_DIR + user.user_id + _vm.EXTENSION,
                             },
                           }),
                         ],

@@ -11,7 +11,7 @@
                     <v-row v-for="(user, index) in rankings" :key="index">
                         <v-col>{{user.rank}} 位</v-col>
                         <v-col>
-                            <v-img height="80px" width="80px" :src="userImgPath + user.user_id + extention" />
+                            <v-img height="80px" width="80px" :src="IMAGE_DIR + user.user_id + EXTENSION" />
                         </v-col>
                         <v-col>{{user.user_name}}</v-col>
                         <v-col>{{user.point}} pt</v-col>
@@ -26,6 +26,10 @@
 import axios from 'axios';
 axios.defaults.baseURL = '/bingo2021';
 
+const IMAGE_DIR = './images/player/';
+const NO_IMAGE = 'NoImage.png';
+const EXTENSION = '.jpg';
+
 export default {
     components: {
     },
@@ -34,8 +38,6 @@ export default {
         dialog:{type: Boolean, default: false},
     },
     data:() => ({
-        userImgPath: './images/player/',
-        extention: 'jpg',
         rankings:[],
         result: null,
     }),

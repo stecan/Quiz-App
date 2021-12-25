@@ -48,6 +48,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -281,7 +282,17 @@ var render = function () {
           [
             _c("choices-area", { attrs: { choices: _vm.choices } }),
             _vm._v(" "),
-            _c("panelists-area", { attrs: { panelists: _vm.panelists } }),
+            _c("panelists-area", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.adminFlg,
+                  expression: "adminFlg",
+                },
+              ],
+              attrs: { adminFlg: _vm.adminFlg, panelists: _vm.panelists },
+            }),
           ],
           1
         ),
