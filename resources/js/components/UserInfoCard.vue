@@ -4,6 +4,7 @@
     >
         <v-img
             height="150"
+            style="object-fit: cover"
             :src="profileImagePath"
         >
         </v-img>
