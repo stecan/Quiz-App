@@ -22,12 +22,16 @@
 <script>
 import axios from "axios";
 axios.defaults.baseURL = '/bingo2021';
+import UserInfoCard from '../components/UserInfoCard.vue';
 
 const IMAGE_DIR = './images/player/';
 const NO_IMAGE = 'NoImage.png';
 const EXTENSION = '.jpg';
 
 export default {
+  components: {
+    UserInfoCard
+  },
   data() {
     return {
       overlay: false,
