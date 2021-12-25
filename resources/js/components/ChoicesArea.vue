@@ -6,7 +6,6 @@
                 hide-details
             >
                 <v-radio
-                    v-show="adminFlg==false"
                     v-for="choice in choices"
                     :key="choice"
                     :value="choice"
@@ -15,7 +14,7 @@
             </v-radio-group>
         </v-card-text>
         <v-card-actions
-            v-show="adminFlg==false"
+            v-if="adminFlg == false"
             class="d-flex justify-center"
         >
             <v-btn

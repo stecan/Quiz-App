@@ -4450,17 +4450,9 @@ var render = function () {
               attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
             }),
             _vm._v(" "),
-            _c("panelists-area", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.adminFlg == false,
-                  expression: "adminFlg == false",
-                },
-              ],
-              attrs: { panelists: _vm.panelists },
-            }),
+            _vm.adminFlg == false
+              ? _c("panelists-area", { attrs: { panelists: _vm.panelists } })
+              : _vm._e(),
           ],
           1
         ),

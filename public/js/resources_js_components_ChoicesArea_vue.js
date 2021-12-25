@@ -51,7 +51,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -229,14 +228,6 @@ var render = function () {
             },
             _vm._l(_vm.choices, function (choice) {
               return _c("v-radio", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.adminFlg == false,
-                    expression: "adminFlg==false",
-                  },
-                ],
                 key: choice,
                 attrs: { value: choice, label: choice },
               })
@@ -247,35 +238,27 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-card-actions",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.adminFlg == false,
-              expression: "adminFlg==false",
-            },
-          ],
-          staticClass: "d-flex justify-center",
-        },
-        [
-          _c(
-            "v-btn",
-            {
-              attrs: { color: "deep-purple lighten-2", text: "" },
-              on: {
-                click: function ($event) {
-                  return _vm.sendAnswer()
+      _vm.adminFlg == false
+        ? _c(
+            "v-card-actions",
+            { staticClass: "d-flex justify-center" },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "deep-purple lighten-2", text: "" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.sendAnswer()
+                    },
+                  },
                 },
-              },
-            },
-            [_vm._v("\n            回答を送信する\n        ")]
-          ),
-        ],
-        1
-      ),
+                [_vm._v("\n            回答を送信する\n        ")]
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
     ],
     1
   )
