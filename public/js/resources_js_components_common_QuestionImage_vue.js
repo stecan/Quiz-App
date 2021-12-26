@@ -119,7 +119,7 @@ var render = function () {
   return _c("v-img", {
     staticClass: "ma-5",
     attrs: {
-      "aspect-ratio": "1.5",
+      "aspect-ratio": "1.9",
       "max-width": "640px",
       "max-height": "480px",
       src: _vm.imgPath,

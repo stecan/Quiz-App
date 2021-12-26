@@ -51,6 +51,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 var TextButton = function TextButton() {
@@ -225,10 +226,10 @@ var render = function () {
                 expression: "selection",
               },
             },
-            _vm._l(_vm.choices, function (choice) {
+            _vm._l(_vm.choices, function (choice, index) {
               return _c("v-radio", {
-                key: choice,
-                attrs: { value: choice, label: choice },
+                key: "sel" + index,
+                attrs: { value: index + 1, label: index + 1 + "：" + choice },
               })
             }),
             1
@@ -237,7 +238,7 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm.adminFlg == false
+      !_vm.adminFlg
         ? _c(
             "v-card-actions",
             { staticClass: "d-flex justify-center" },
@@ -245,7 +246,11 @@ var render = function () {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "deep-purple lighten-2", text: "" },
+                  attrs: {
+                    color: "deep-purple lighten-2",
+                    elevation: "10",
+                    text: "",
+                  },
                   on: {
                     click: function ($event) {
                       return _vm.sendAnswer()

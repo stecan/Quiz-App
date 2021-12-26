@@ -2208,7 +2208,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var IMAGE_DIR = './images/player/';
 var NO_IMAGE = 'NoImage.png';
-var EXTENSION = '.jpg';
+var EXTENSION = '.JPG';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     /* コンポーネント */
@@ -2353,8 +2353,8 @@ var IMAGE_DIR = './images/';
 var NO_IMAGE = 'NoImage.png';
 var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';
+var PLAYER_SUFFIX = 'player/';
 var EXTENSION = '.JPG';
-var EXTENSION_USER = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   /* コンポーネント */
   components: {
@@ -2384,7 +2384,7 @@ var EXTENSION_USER = '.jpg';
     };
   },
   methods: {
-    // 問題抽選
+    // 問題取得
     getQuestion: function () {
       var _getQuestion = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var _this = this;
@@ -2415,6 +2415,7 @@ var EXTENSION_USER = '.jpg';
 
       return getQuestion;
     }(),
+    // 回答者表示
     getPanelists: function () {
       var _getPanelists = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var _this2 = this;
@@ -2427,6 +2428,7 @@ var EXTENSION_USER = '.jpg';
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/getplayer').then(function (res) {
                   _this2.setPanelists(res.data);
                 })["catch"](function (error) {
+                  console.log(error);
                   return;
                 });
 
@@ -2453,9 +2455,8 @@ var EXTENSION_USER = '.jpg';
     },
     setPanelists: function setPanelists(panelists) {
       this.panelists = panelists.map(function (panelist) {
-        imgDir = IMAGE_DIR + panelist.user_id + EXTENSION_USER;
         return {
-          profileImagePath: imgDir
+          profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION
         }; // ほんとはこう書きたい
         // return {
         //      profileImagePath: fs.existsSync(imgDir) ? imgDir : IMAGE_DIR + NO_IMAGE
@@ -2466,6 +2467,7 @@ var EXTENSION_USER = '.jpg';
   created: function created() {
     /* 初期表示 */
     this.getQuestion();
+    this.getPanelists();
   }
 });
 
@@ -2520,7 +2522,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var IMAGE_DIR = './images/player/';
 var NO_IMAGE = 'NoImage.png';
-var EXTENSION = '.jpg';
+var EXTENSION = '.JPG';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -2588,7 +2590,7 @@ var EXTENSION = '.jpg';
       return getRanking;
     }(),
     close: function close() {
-      this.dialog = false;
+      this.$emit('change', false);
     }
   },
   created: function created() {
@@ -2708,6 +2710,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 
@@ -2726,7 +2731,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       /* 変数宣言 */
       resetQuestion: 0,
-      resetChallenger: 0,
       dispRanking: false,
       result: null
     };
@@ -2744,17 +2748,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (confirm('問題を抽選してよろしいですか？出題中の問題は出題済みとなります。')) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 2:
                 self = this;
-                _context.next = 3;
+                _context.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/drawingquestion', {}).then(function (res) {})["catch"](function (error) {
                   console.log(error);
                   return;
                 });
 
-              case 3:
+              case 5:
                 self.resetQuestion++;
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -2771,22 +2783,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // 回答者抽選
     drawingChallenger: function () {
       var _drawingChallenger = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var self;
+        var retryMode, self;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                retryMode = '';
+
+                if (confirm('通常抽選の場合は[OK]、以外は[キャンセル]※次の確認があります。')) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                if (!confirm('再抽選の場合は[OK]、キャンセルの場合は[キャンセル]')) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                retryMode = '1';
+                _context2.next = 7;
+                break;
+
+              case 6:
+                return _context2.abrupt("return");
+
+              case 7:
                 self = this;
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/drawingplayer', {}).then(function (res) {})["catch"](function (error) {
+                _context2.next = 10;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/drawingplayer', {
+                  retry: retryMode
+                }).then(function (res) {})["catch"](function (error) {
                   console.log(error);
                   return;
                 });
 
-              case 3:
-                self.resetChallenger++;
+              case 10:
+                self.resetQuestion++;
 
-              case 4:
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -2808,18 +2842,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                if (confirm('プレイヤーに解答の表示を許可しますか？')) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 2:
                 self = this;
-                _context3.next = 3;
+                _context3.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/takeanswer', {}).then(function (res) {})["catch"](function (error) {
                   console.log(error);
                   return;
                 });
 
-              case 3:
+              case 5:
                 alert('プレイヤーに解答を開示しました。');
                 self.resetQuestion++;
 
-              case 5:
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -2835,16 +2877,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }(),
     // ランキング表示
     getRanking: function getRanking() {
+      alert('プレイヤーには見えません。');
       this.dispRanking = true;
     },
-    resetSystem: function () {
-      var _resetSystem = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+    endGame: function () {
+      var _endGame = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var self;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                if (confirm('システムを初期状態に戻します。よろしいですか？')) {
+                if (confirm('全ての問題を出題済みとし、プレイヤーへランキングの表示を許可します。よろしいですか？')) {
                   _context4.next = 2;
                   break;
                 }
@@ -2854,6 +2897,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 self = this;
                 _context4.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/endgame', {
+                  reset_pass: 'bingo2021system'
+                }).then(function (res) {})["catch"](function (error) {
+                  console.log(error);
+                  return;
+                });
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function endGame() {
+        return _endGame.apply(this, arguments);
+      }
+
+      return endGame;
+    }(),
+    resetSystem: function () {
+      var _resetSystem = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var self;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                if (confirm('システムを初期状態に戻します。よろしいですか？')) {
+                  _context5.next = 2;
+                  break;
+                }
+
+                return _context5.abrupt("return");
+
+              case 2:
+                self = this;
+                _context5.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/resetsystem', {
                   reset_pass: 'bingo2021system'
                 }).then(function (res) {})["catch"](function (error) {
@@ -2866,10 +2947,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee5, this);
       }));
 
       function resetSystem() {
@@ -4430,8 +4511,8 @@ var render = function () {
       "div",
       { staticClass: "d-flex flex-no-warp" },
       [
-        !_vm.aDispFlg
-          ? _c("question-image", { attrs: { imgPath: _vm.qImgPath } })
+        _vm.aDispFlg
+          ? _c("question-image", { attrs: { imgPath: _vm.aImgPath } })
           : _c("question-image", { attrs: { imgPath: _vm.qImgPath } }),
         _vm._v(" "),
         _c(
@@ -4441,9 +4522,7 @@ var render = function () {
               attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
             }),
             _vm._v(" "),
-            _vm.adminFlg == false
-              ? _c("panelists-area", { attrs: { panelists: _vm.panelists } })
-              : _vm._e(),
+            _c("panelists-area", { attrs: { panelists: _vm.panelists } }),
           ],
           1
         ),
@@ -4529,7 +4608,7 @@ var render = function () {
                           _c("v-img", {
                             attrs: {
                               height: "80px",
-                              "min-width": "80px",
+                              "max-width": "80px",
                               src: _vm.IMAGE_DIR + user.user_id + _vm.EXTENSION,
                             },
                           }),
@@ -4649,10 +4728,14 @@ var render = function () {
             1
           ),
           _vm._v(" "),
+          _c("v-row", [_vm._v(" ")]),
+          _vm._v(" "),
           _c("question-area", {
             key: "q" + _vm.resetQuestion,
             attrs: { adminFlg: true },
           }),
+          _vm._v(" "),
+          _c("v-row", [_vm._v(" ")]),
           _vm._v(" "),
           _c(
             "v-row",
@@ -4674,8 +4757,6 @@ var render = function () {
             ],
             1
           ),
-          _vm._v(" "),
-          _c("challenger-area", { key: "c" + _vm.resetChallenger }),
           _vm._v(" "),
           _c("answer-status-area"),
           _vm._v(" "),
@@ -4731,6 +4812,15 @@ var render = function () {
                     "v-btn",
                     {
                       attrs: { rounded: "", elevation: "10" },
+                      on: { click: _vm.endGame },
+                    },
+                    [_vm._v("ゲーム終了")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { rounded: "", elevation: "10" },
                       on: { click: _vm.resetSystem },
                     },
                     [_vm._v("システムリセット")]
@@ -4745,7 +4835,14 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("ranking-dialog", { attrs: { dialog: _vm.dispRanking } }),
+      _c("ranking-dialog", {
+        attrs: { dialog: _vm.dispRanking },
+        on: {
+          change: function ($event) {
+            _vm.dispRanking = $event
+          },
+        },
+      }),
     ],
     1
   )

@@ -2115,6 +2115,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 var PlayerInfoArea = function PlayerInfoArea() {
@@ -2129,14 +2134,19 @@ var QuestionArea = function QuestionArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_QuestionArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/QuestionArea */ "./resources/js/components/QuestionArea.vue"));
 };
 
+var RankingDialog = function RankingDialog() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_RankingDialog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/RankingDialog */ "./resources/js/components/RankingDialog.vue"));
+};
+
 var IMAGE_DIR = "./images/player/";
 var NO_IMAGE = "NoImage.png";
-var EXTENSION = ".jpg";
+var EXTENSION = ".JPG";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     PlayerInfoArea: PlayerInfoArea,
     CardListArea: CardListArea,
-    QuestionArea: QuestionArea
+    QuestionArea: QuestionArea,
+    RankingDialog: RankingDialog
   },
   data: function data() {
     return {
@@ -2149,7 +2159,9 @@ var EXTENSION = ".jpg";
           userName: "unknown name",
           department: "unknown dept"
         };
-      })
+      }),
+      resetQuestion: 0,
+      dispRanking: false
     };
   },
   created: function created() {
@@ -2232,7 +2244,46 @@ var EXTENSION = ".jpg";
           department: card.department
         };
       });
-    }
+    },
+    // 表示更新
+    updateDisp: function updateDisp() {
+      this.resetQuestion++;
+    },
+    // ランキング表示
+    getRanking: function () {
+      var _getRanking = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var _this3 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/isopenranking", {
+                  params: {}
+                }).then(function (res) {
+                  if (res.data) {
+                    _this3.dispRanking = true;
+                  }
+                })["catch"](function (error) {
+                  console.log("error:", error);
+                  return;
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function getRanking() {
+        return _getRanking.apply(this, arguments);
+      }
+
+      return getRanking;
+    }()
   }
 });
 
@@ -3290,6 +3341,30 @@ var render = function () {
       _c("player-info-area", { attrs: { userInfo: _vm.userInfo } }),
       _vm._v(" "),
       _c(
+        "div",
+        [
+          _c(
+            "v-btn",
+            {
+              attrs: { rounded: "", elevation: "10" },
+              on: { click: _vm.updateDisp },
+            },
+            [_vm._v("表示更新")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              attrs: { rounded: "", elevation: "10" },
+              on: { click: _vm.getRanking },
+            },
+            [_vm._v("ランキング表示")]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "v-container",
         { attrs: { fluid: "" } },
         [
@@ -3299,7 +3374,7 @@ var render = function () {
               _c(
                 "v-col",
                 { attrs: { cols: "10", offset: "1" } },
-                [_c("question-area")],
+                [_c("question-area", { key: "q" + _vm.resetQuestion })],
                 1
               ),
             ],
@@ -3315,6 +3390,15 @@ var render = function () {
         ],
         1
       ),
+      _vm._v(" "),
+      _c("ranking-dialog", {
+        attrs: { dialog: _vm.dispRanking },
+        on: {
+          change: function ($event) {
+            _vm.dispRanking = $event
+          },
+        },
+      }),
     ],
     1
   )
