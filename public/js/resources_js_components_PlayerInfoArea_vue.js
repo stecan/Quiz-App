@@ -28,8 +28,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {},
   data: function data() {

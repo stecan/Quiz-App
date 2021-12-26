@@ -2120,7 +2120,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
+
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 var PlayerInfoArea = function PlayerInfoArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_PlayerInfoArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/PlayerInfoArea */ "./resources/js/components/PlayerInfoArea.vue"));

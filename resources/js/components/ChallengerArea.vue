@@ -10,7 +10,7 @@
 <script>
 // 利用コンポーネントのローカル定義 import
 import axios from 'axios';
-//axios.defaults.baseURL = '/bingo2021';
+axios.defaults.baseURL = '/bingo2021';
 
 import UserInfoCard from "../components/UserInfoCard.vue"
 

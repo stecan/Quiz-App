@@ -45,12 +45,12 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('http://localhost:3306'),
-            'host' => env('DB_HOST', 'localhost'),
+            'url' => env('mysql57.psnet.sakura.ne.jp:3306'),
+            'host' => env('DB_HOST', 'mysql57.psnet.sakura.ne.jp'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'quiz_app'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'psnet_quiz_app'),
+            'username' => env('DB_USERNAME', 'psnet'),
+            'password' => env('DB_PASSWORD', 'psINFra32'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

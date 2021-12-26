@@ -15502,7 +15502,7 @@ var FollowerSelect = function FollowerSelect() {
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  //base : 'bingo2021',
+  base: 'bingo2021',
   routes: [{
     path: '/',
     name: 'game',

@@ -7,7 +7,7 @@
 </template>
 <script>
 import axios from "axios";
-//axios.defaults.baseURL = '/bingo2021';
+axios.defaults.baseURL = '/bingo2021';
 
 export default {
   props: {
