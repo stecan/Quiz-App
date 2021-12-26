@@ -51,6 +51,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -246,7 +247,11 @@ var render = function () {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "deep-purple lighten-2", text: "" },
+                  attrs: {
+                    color: "deep-purple lighten-2",
+                    text: "",
+                    outlined: "",
+                  },
                   on: {
                     click: function ($event) {
                       return _vm.sendAnswer()

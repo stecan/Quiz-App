@@ -20,6 +20,7 @@
             <v-btn
                 color="deep-purple lighten-2"
                 text
+                outlined
                 @click="sendAnswer()"
             >
                 回答を送信する
