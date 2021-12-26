@@ -2141,6 +2141,10 @@ var EXTENSION = '.jpg';
   },
   data: function data() {
     return {
+      userInfo: {
+        userName: "●● ●●●●",
+        point: "100"
+      },
       cardList: _toConsumableArray(Array(20)).map(function (_, i) {
         return i + 1;
       }).map(function (value) {
@@ -3258,7 +3262,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("PlayerInfoArea"),
+      _c("PlayerInfoArea", { attrs: { userInfo: _vm.userInfo } }),
       _vm._v(" "),
       _c(
         "v-container",

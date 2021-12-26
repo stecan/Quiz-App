@@ -1,6 +1,6 @@
 <template>
 <div>
-  <PlayerInfoArea />
+  <PlayerInfoArea :userInfo="userInfo" />
   <v-container fluid>
     <!-- 問題&回答表示エリア -->
     <v-row>
@@ -35,6 +35,10 @@ export default {
   },
   data() {
     return {
+      userInfo:{
+        userName:"●● ●●●●",
+        point:"100"
+      },
       cardList: [...Array(20)].map((_, i) => i + 1).map(value => {
         return {
           profileImagePath: "https://placehold.jp/150x200.png",

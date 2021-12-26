@@ -115,7 +115,7 @@ var render = function () {
       _c("v-spacer"),
       _vm._v(" "),
       _c("p", { staticClass: "text-h5 mr-5", staticStyle: { margin: "0" } }, [
-        _vm._v("USER : " + _vm._s(_vm.userInfo.user_name)),
+        _vm._v("USER : " + _vm._s(_vm.userInfo.userName)),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "text-h5 mr-5", staticStyle: { margin: "0" } }, [
