@@ -49,8 +49,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
+ //axios.defaults.baseURL = '/bingo2021';
 
 var QuestionImage = function QuestionImage() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_common_QuestionImage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./common/QuestionImage */ "./resources/js/components/common/QuestionImage.vue"));
@@ -68,8 +67,8 @@ var IMAGE_DIR = './images/';
 var NO_IMAGE = 'NoImage.png';
 var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';
+var PLAYER_SUFFIX = 'player/';
 var EXTENSION = '.JPG';
-var EXTENSION_USER = '.jpg';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   /* コンポーネント */
   components: {
@@ -99,7 +98,7 @@ var EXTENSION_USER = '.jpg';
     };
   },
   methods: {
-    // 問題抽選
+    // 問題取得
     getQuestion: function () {
       var _getQuestion = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var _this = this;
@@ -130,6 +129,7 @@ var EXTENSION_USER = '.jpg';
 
       return getQuestion;
     }(),
+    // 回答者表示
     getPanelists: function () {
       var _getPanelists = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var _this2 = this;
@@ -142,6 +142,7 @@ var EXTENSION_USER = '.jpg';
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/getplayer').then(function (res) {
                   _this2.setPanelists(res.data);
                 })["catch"](function (error) {
+                  console.log(error);
                   return;
                 });
 
@@ -168,9 +169,8 @@ var EXTENSION_USER = '.jpg';
     },
     setPanelists: function setPanelists(panelists) {
       this.panelists = panelists.map(function (panelist) {
-        imgDir = IMAGE_DIR + panelist.user_id + EXTENSION_USER;
         return {
-          profileImagePath: imgDir
+          profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION
         }; // ほんとはこう書きたい
         // return {
         //      profileImagePath: fs.existsSync(imgDir) ? imgDir : IMAGE_DIR + NO_IMAGE
@@ -181,6 +181,7 @@ var EXTENSION_USER = '.jpg';
   created: function created() {
     /* 初期表示 */
     this.getQuestion();
+    this.getPanelists();
   }
 });
 
@@ -275,8 +276,8 @@ var render = function () {
       "div",
       { staticClass: "d-flex flex-no-warp" },
       [
-        !_vm.aDispFlg
-          ? _c("question-image", { attrs: { imgPath: _vm.qImgPath } })
+        _vm.aDispFlg
+          ? _c("question-image", { attrs: { imgPath: _vm.aImgPath } })
           : _c("question-image", { attrs: { imgPath: _vm.qImgPath } }),
         _vm._v(" "),
         _c(
@@ -286,9 +287,7 @@ var render = function () {
               attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
             }),
             _vm._v(" "),
-            _vm.adminFlg == false
-              ? _c("panelists-area", { attrs: { panelists: _vm.panelists } })
-              : _vm._e(),
+            _c("panelists-area", { attrs: { panelists: _vm.panelists } }),
           ],
           1
         ),

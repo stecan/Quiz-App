@@ -3,8 +3,8 @@
     <div class="d-flex flex-no-warp">
         <!-- 問題画像＆解答画像表示エリア -->
         <question-image
-            v-if="!aDispFlg"
-            :imgPath="qImgPath"
+            v-if="aDispFlg"
+            :imgPath="aImgPath"
         />
         <question-image
             v-else
@@ -17,7 +17,7 @@
                 :choices="choices"
             />
             <!-- 回答者表示エリア -->
-            <panelists-area v-if="adminFlg == false"
+            <panelists-area
                 :panelists="panelists"
             />
         </div>
@@ -38,8 +38,8 @@ const IMAGE_DIR = './images/';
 const NO_IMAGE = 'NoImage.png';
 const QUESTION_SUFFIX = 'quiz/quiz';
 const ANSWER_SUFFIX = 'answer/ans_quiz';
+const PLAYER_SUFFIX = 'player/';
 const EXTENSION = '.JPG';
-const EXTENSION_USER = '.jpg';
 
 export default {
     /* コンポーネント */
@@ -64,7 +64,7 @@ export default {
         }
     },
     methods: {
-        // 問題抽選
+        // 問題取得
         getQuestion: async function() {
             // q_kbn = 1の問題を取得
             await axios.get('/api/axios/getquestion')
@@ -76,12 +76,14 @@ export default {
                         return;
                     });
         },
+        // 回答者表示
         getPanelists: async function() {
             await axios.get('/api/axios/getplayer')
                     .then(res => {
                         this.setPanelists(res.data);
                     })
                     .catch(error => {
+                        console.log(error);
                         return;
                     });
         },
@@ -94,9 +96,8 @@ export default {
         },
         setPanelists: function(panelists) {
             this.panelists = panelists.map(panelist => {
-                imgDir = IMAGE_DIR + panelist.user_id + EXTENSION_USER;
                 return {
-                    profileImagePath: imgDir
+                    profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION
                 }
                 // ほんとはこう書きたい
                 // return {
@@ -108,6 +109,7 @@ export default {
     created() {
         /* 初期表示 */
         this.getQuestion();
+        this.getPanelists();
     },
 }
 </script>

@@ -8,15 +8,17 @@
                 </v-col>
             </v-row>
 
+            <v-row>&nbsp;</v-row>
+
             <question-area :adminFlg="true" :key="'q' + resetQuestion" />
+
+            <v-row>&nbsp;</v-row>
 
             <v-row>
                 <v-col>
                     <v-btn rounded elevation="10" @click="drawingChallenger">回答者抽選</v-btn>
                 </v-col>
             </v-row>
-
-            <challenger-area :key="'c' + resetChallenger" />
 
             <answer-status-area />
 
@@ -32,11 +34,12 @@
             </v-row>
             <v-row>
                 <v-col>
+                    <v-btn rounded elevation="10" @click="endGame">ゲーム終了</v-btn>
                     <v-btn rounded elevation="10" @click="resetSystem">システムリセット</v-btn>
                 </v-col>
             </v-row>
         </v-container>
-        <ranking-dialog :dialog="dispRanking" />
+        <ranking-dialog :dialog="dispRanking" @change="dispRanking = $event" />
     </div>
 </template>
 
@@ -60,7 +63,6 @@ export default {
     data:() => ({
         /* 変数宣言 */
         resetQuestion: 0,
-        resetChallenger: 0,
         dispRanking: false,
         result: null,
     }),
@@ -71,6 +73,10 @@ export default {
         /* メソッド */
         // 問題抽選
         drawingQuestion: async function() {
+            if(!confirm('問題を抽選してよろしいですか？出題中の問題は出題済みとなります。'))
+            {
+                return;
+            }
             var self = this;
             await axios.post('/api/axios/drawingquestion',
             {
@@ -84,19 +90,36 @@ export default {
         },
         // 回答者抽選
         drawingChallenger: async function() {
+            var retryMode = '';
+            if(!confirm('通常抽選の場合は[OK]、以外は[キャンセル]※次の確認があります。'))
+            {
+                if(confirm('再抽選の場合は[OK]、キャンセルの場合は[キャンセル]'))
+                {
+                    retryMode = '1';
+                }
+                else
+                {
+                    return;
+                }
+            }
             var self = this;
             await axios.get('/api/axios/drawingplayer',
             {
+                retry: retryMode,
             }).then(res =>
             {
             }).catch(function (error) {
                console.log(error);
                return;
             });
-            self.resetChallenger++;
+            self.resetQuestion++;
         },
         // 回答開示
         takeAnswer: async function() {
+            if(!confirm('プレイヤーに解答の表示を許可しますか？'))
+            {
+                return;
+            }
             var self = this;
             await axios.post('/api/axios/takeanswer',
             {
@@ -111,7 +134,24 @@ export default {
         },
         // ランキング表示
         getRanking: function() {
+            alert('プレイヤーには見えません。');
             this.dispRanking = true;
+        },
+        endGame: async function() {
+            if(!confirm('全ての問題を出題済みとし、プレイヤーへランキングの表示を許可します。よろしいですか？'))
+            {
+                return;
+            }
+            var self = this;
+            await axios.post('/api/axios/endgame',
+            {
+                reset_pass: 'bingo2021system',
+            }).then(res=>
+            {
+            }).catch(function (error) {
+               console.log(error);
+               return;
+            });
         },
         resetSystem: async function()
         {

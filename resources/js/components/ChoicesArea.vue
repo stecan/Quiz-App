@@ -6,19 +6,20 @@
                 hide-details
             >
                 <v-radio
-                    v-for="choice in choices"
-                    :key="choice"
-                    :value="choice"
-                    :label="choice"
+                    v-for="(choice, index) in choices"
+                    :key="'sel' + index"
+                    :value="index + 1"
+                    :label="(index + 1) + '：' + choice"
                 />
             </v-radio-group>
         </v-card-text>
         <v-card-actions
-            v-if="adminFlg == false"
+            v-if="!adminFlg"
             class="d-flex justify-center"
         >
             <v-btn
                 color="deep-purple lighten-2"
+                elevation="10"
                 text
                 outlined
                 @click="sendAnswer()"

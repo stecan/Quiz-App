@@ -52,6 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -227,10 +228,10 @@ var render = function () {
                 expression: "selection",
               },
             },
-            _vm._l(_vm.choices, function (choice) {
+            _vm._l(_vm.choices, function (choice, index) {
               return _c("v-radio", {
-                key: choice,
-                attrs: { value: choice, label: choice },
+                key: "sel" + index,
+                attrs: { value: index + 1, label: index + 1 + "：" + choice },
               })
             }),
             1
@@ -239,7 +240,7 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm.adminFlg == false
+      !_vm.adminFlg
         ? _c(
             "v-card-actions",
             { staticClass: "d-flex justify-center" },
@@ -249,6 +250,7 @@ var render = function () {
                 {
                   attrs: {
                     color: "deep-purple lighten-2",
+                    elevation: "10",
                     text: "",
                     outlined: "",
                   },

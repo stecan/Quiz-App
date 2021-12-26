@@ -40,6 +40,8 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
     Route::get('getanswer', $rootMain . '@getAnswer')->name('get.answer');
     // スコア計算・取得
     Route::get('getscore', $rootMain . '@getScore')->name('get.score');
+    // ランキング表示可否
+    Route::get('isopenranking', $rootMain . '@isOpenRanking')->name('open.ranking');
     // ランキング取得
     Route::get('getranking', $rootMain . '@getRanking')->name('get.ranking');
 
@@ -53,6 +55,8 @@ Route::group(['middleware' => ['api'], 'prefix' => 'axios', 'as' => 'axios.'], f
     // 解答開示
     Route::post('takeanswer', $rootMain . '@takeAnswer')->name('take.answer');
 
+    // reset
+    Route::post('endgame', $rootMain . '@endGame')->name('end.game');
     // reset
     Route::post('resetsystem', $rootMain . '@resetSystem')->name('reset.system');
 });

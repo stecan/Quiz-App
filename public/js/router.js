@@ -15225,13 +15225,13 @@ Vue.compile = compileToFunctions;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
+/******/ 			id: moduleId,
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -15283,7 +15283,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_Login_vue":1,"resources_js_pages_Game_vue":1,"resources_js_pages_Admin_vue":1,"resources_js_pages_FollowerSelect_vue":1,"resources_js_components_CardListArea_vue":1,"resources_js_components_QuestionArea_vue":1,"resources_js_components_common_QuestionImage_vue":1,"resources_js_components_PanelistsArea_vue":1,"resources_js_components_ChoicesArea_vue":1,"resources_js_components_common_TextButton_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_Login_vue":1,"resources_js_pages_Game_vue":1,"resources_js_pages_Admin_vue":1,"resources_js_pages_FollowerSelect_vue":1,"resources_js_components_common_QuestionImage_vue":1,"resources_js_components_PanelistsArea_vue":1,"resources_js_components_ChoicesArea_vue":1,"resources_js_components_common_TextButton_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
