@@ -13,7 +13,7 @@ export default {
   props: {
   },
   data:() => ({
-      userInfo: {user_name:'z', point:0},
+      userInfo: {user_name:'', point:0},
       result: null,
   }),
   methods: {
