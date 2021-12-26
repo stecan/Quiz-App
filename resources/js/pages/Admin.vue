@@ -62,7 +62,6 @@ export default {
     data:() => ({
         /* 変数宣言 */
         resetQuestion: 0,
-        resetChallenger: 0,
         dispRanking: false,
         result: null,
     }),

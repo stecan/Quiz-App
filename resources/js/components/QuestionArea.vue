@@ -4,7 +4,7 @@
         <!-- 問題画像＆解答画像表示エリア -->
         <question-image
             v-if="!aDispFlg"
-            :imgPath="qImgPath"
+            :imgPath="aImgPath"
         />
         <question-image
             v-else
