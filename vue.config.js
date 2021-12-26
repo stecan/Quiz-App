@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/bingo2021/',
+    //publicPath: '/bingo2021/',
 }

@@ -2156,8 +2156,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 var IMAGE_DIR = "./images/player/";
 var NO_IMAGE = "NoImage.png";

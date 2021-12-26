@@ -28,40 +28,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {},
   data: function data() {
     return {
       userInfo: {
-        user_name: '',
+        user_name: 'z',
         point: 0
-      }
+      },
+      result: null
     };
   },
   methods: {
     getUserInfo: function () {
       var _getUserInfo = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var _this = this;
-
+        var self, ret;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/getuser", {
+                self = this;
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/getuser', {
                   params: {
                     my_user_id: this.$store.state.userId
                   }
                 }).then(function (res) {
-                  _this.userInfo = res.data;
+                  self.result = res.data;
                 })["catch"](function (error) {
-                  console.log("error:", error);
+                  console.log(error);
                   return;
                 });
 
-              case 2:
+              case 3:
+                ret = self.result;
+
+                if (ret) {
+                  _context.next = 6;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 6:
+                self.userInfo = ret;
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -74,10 +88,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return getUserInfo;
-    }(),
-    created: function created() {
-      this.getUserInfo();
-    }
+    }()
+  },
+  created: function created() {
+    this.getUserInfo();
   }
 });
 

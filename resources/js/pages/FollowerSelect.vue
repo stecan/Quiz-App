@@ -28,7 +28,7 @@
 </template>
 <script>
 import axios from "axios";
-axios.defaults.baseURL = '/bingo2021';
+//axios.defaults.baseURL = '/bingo2021';
 import UserInfoCard from "../components/UserInfoCard.vue";
 
 const IMAGE_DIR = "./images/player/";

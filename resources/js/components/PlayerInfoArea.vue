@@ -7,35 +7,37 @@
 </template>
 <script>
 import axios from "axios";
-axios.defaults.baseURL = '/bingo2021';
+//axios.defaults.baseURL = '/bingo2021';
 
 export default {
   props: {
   },
-  data() {
-    return {
-      userInfo: { user_name: '', point: 0},
-    }
-  },
+  data:() => ({
+      userInfo: {user_name:'z', point:0},
+      result: null,
+  }),
   methods: {
     getUserInfo: async function() {
-      await axios
-        .get("/api/axios/getuser", {
+        var self = this;
+        await axios.get('/api/axios/getuser',
+        {
           params: {
             my_user_id: this.$store.state.userId,
           },
-        })
-        .then((res) => {
-          this.userInfo = res.data;
-        })
-        .catch((error) => {
-          console.log("error:", error);
-          return;
+        }).then(res =>
+        {
+            self.result = res.data
+        }).catch(function (error) {
+            console.log(error);
+            return;
         });
+        var ret = self.result;
+        if(!ret) return;
+        self.userInfo = ret;
     },
-    created() {
-      this.getUserInfo();
-    },
+  },
+  created() {
+    this.getUserInfo();
   },
 }
 </script>

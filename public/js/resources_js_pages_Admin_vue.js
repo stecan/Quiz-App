@@ -2105,8 +2105,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   prpps: {},
@@ -2203,8 +2203,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 // 利用コンポーネントのローカル定義 import
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 var IMAGE_DIR = './images/player/';
 var NO_IMAGE = 'NoImage.png';
@@ -2335,8 +2335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
+ //axios.defaults.baseURL = '/bingo2021';
 
 var QuestionImage = function QuestionImage() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_common_QuestionImage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./common/QuestionImage */ "./resources/js/components/common/QuestionImage.vue"));
@@ -2519,8 +2518,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 var IMAGE_DIR = './images/player/';
 var NO_IMAGE = 'NoImage.png';
 var EXTENSION = '.JPG';
@@ -2714,8 +2713,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 
 

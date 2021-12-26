@@ -13,7 +13,7 @@ const glob = require('glob');
  */
 
 mix
-    .setResourceRoot('/bingo2021/')
+    //.setResourceRoot('/bingo2021/')
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/router.js', 'public/js')
     .js('resources/js/store.js', 'public/js')
