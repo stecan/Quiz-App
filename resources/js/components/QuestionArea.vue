@@ -3,7 +3,7 @@
     <div class="d-flex flex-no-warp">
         <!-- 問題画像＆解答画像表示エリア -->
         <question-image
-            v-if="!aDispFlg"
+            v-if="aDispFlg"
             :imgPath="aImgPath"
         />
         <question-image
