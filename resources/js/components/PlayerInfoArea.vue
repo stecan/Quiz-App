@@ -14,24 +14,21 @@ export default {
   },
   data() {
     return {
-      userInfo: { user_name: '', point: 0},
+      userInfo: null,
     }
   },
   methods: {
     getUserInfo: async function() {
-      await axios
-        .get("/api/axios/getuser", {
-          params: {
-            my_user_id: this.$store.state.userId,
-          },
-        })
-        .then((res) => {
-          this.userInfo = res.data;
-        })
-        .catch((error) => {
-          console.log("error:", error);
+      await axios.post('/api/axios/getuser',
+      {
+        my_user_id: this.$store.state.userId,
+      }).then(res =>
+      {
+        this.userInfo = res.data;
+      }).catch(function (error) {
+          console.log(error);
           return;
-        });
+      });
     },
     created() {
       this.getUserInfo();
