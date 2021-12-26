@@ -1,6 +1,6 @@
 <template>
   <div>
-    <player-info-area :userInfo="userInfo" />
+    <player-info-area :key="'user' + resetUser" />
     <div>
       <v-btn rounded elevation="10" @click="updateDisp">表示更新</v-btn>
       <v-btn rounded elevation="10" @click="getRanking">ランキング表示</v-btn>
@@ -42,7 +42,7 @@ export default {
   },
   data() {
     return {
-      userInfo: "",
+      resetUser: 0,
       cardList: [...Array(20)]
         .map((_, i) => i + 1)
         .map((value) => {
@@ -61,25 +61,9 @@ export default {
       this.$router.push("login");
       return;
     }
-    this.getUserInfo();
     this.getCardList();
   },
   methods: {
-    async getUserInfo() {
-      await axios
-        .get("/api/axios/getuser", {
-          params: {
-            my_user_id: this.$store.state.userId,
-          },
-        })
-        .then((res) => {
-          this.userInfo = res.data;
-        })
-        .catch((error) => {
-          console.log("error:", error);
-          return;
-        });
-    },
     getCardList: async function () {
       await axios
         .get("/api/axios/getcard", {
@@ -106,6 +90,7 @@ export default {
     },
     // 表示更新
     updateDisp: function() {
+      this.resetUser++;
       this.resetQuestion++;
     },
     // ランキング表示
