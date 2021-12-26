@@ -8,7 +8,7 @@
           contain
           :src="card.profileImagePath"
         />
-        <v-card-title class="pt-1">{{ card.user_name }}</v-card-title>
+        <v-card-title class="pt-1">{{ card.userName }}</v-card-title>
         <v-card-subtitle class="pb-1">{{ card.department }}</v-card-subtitle>
       </v-card>
     </div>
