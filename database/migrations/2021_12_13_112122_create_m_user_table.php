@@ -23,6 +23,7 @@ class CreateMUserTable extends Migration
             $table->char('a_kbn',1);
             $table->boolean('answer');
             $table->boolean('admin_flg');
+            $table->boolean('fix_flg');
             $table->timestamps();
         });
     }

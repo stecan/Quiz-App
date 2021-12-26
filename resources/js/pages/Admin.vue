@@ -85,7 +85,7 @@ export default {
         // 回答者抽選
         drawingChallenger: async function() {
             var self = this;
-            await axios.post('/api/axios/drawingplayer',
+            await axios.get('/api/axios/drawingplayer',
             {
             }).then(res =>
             {

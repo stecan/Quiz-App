@@ -358,6 +358,7 @@ class AxiosMainController extends Controller
                 'a_kbn' => 0,
                 'answer'=> 0,
                 'point' => 0,
+                'fix_flg' => 0,
             ];
             DB::table('m_user')
                 ->update($update);
