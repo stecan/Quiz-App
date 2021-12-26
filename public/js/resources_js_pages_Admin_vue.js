@@ -2622,16 +2622,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     profileImagePath: {
@@ -4595,15 +4585,15 @@ var render = function () {
     [
       _c("v-img", {
         staticClass: "grey darken-3",
-        attrs: { height: "250", contain: "", src: _vm.profileImagePath },
+        attrs: { height: "180", contain: "", src: _vm.profileImagePath },
       }),
       _vm._v(" "),
       _c("v-card-text", { staticClass: "mb-0 pb-0 text-left" }, [
-        _vm._v("\n        " + _vm._s(_vm.department) + "\n    "),
+        _vm._v("\n    " + _vm._s(_vm.department) + "\n  "),
       ]),
       _vm._v(" "),
       _c("v-card-text", { staticClass: "mt-0 pt-0 text-left" }, [
-        _vm._v("\n        " + _vm._s(_vm.userName) + "\n    "),
+        _vm._v("\n    " + _vm._s(_vm.userName) + "\n  "),
       ]),
     ],
     1

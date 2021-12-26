@@ -2114,7 +2114,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
  //axios.defaults.baseURL = '/bingo2021';
+
+var PlayerInfoArea = function PlayerInfoArea() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_PlayerInfoArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/PlayerInfoArea */ "./resources/js/components/PlayerInfoArea.vue"));
+};
 
 var CardListArea = function CardListArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_CardListArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/CardListArea */ "./resources/js/components/CardListArea.vue"));
@@ -2124,16 +2129,18 @@ var QuestionArea = function QuestionArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_QuestionArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/QuestionArea */ "./resources/js/components/QuestionArea.vue"));
 };
 
-var IMAGE_DIR = './images/player/';
-var NO_IMAGE = 'NoImage.png';
-var EXTENSION = '.jpg';
+var IMAGE_DIR = "./images/player/";
+var NO_IMAGE = "NoImage.png";
+var EXTENSION = ".jpg";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
+    PlayerInfoArea: PlayerInfoArea,
     CardListArea: CardListArea,
     QuestionArea: QuestionArea
   },
   data: function data() {
     return {
+      userInfo: "",
       cardList: _toConsumableArray(Array(20)).map(function (_, i) {
         return i + 1;
       }).map(function (value) {
@@ -2151,26 +2158,27 @@ var EXTENSION = '.jpg';
       return;
     }
 
+    this.getUserInfo();
     this.getCardList();
   },
   methods: {
-    getCardList: function () {
-      var _getCardList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var _this = this;
+    getUserInfo: function getUserInfo() {
+      var _this = this;
 
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/getcard', {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/getuser", {
                   params: {
-                    my_user_id: this.$store.state.userId
+                    my_user_id: _this.$store.state.userId
                   }
                 }).then(function (res) {
-                  _this.setCardList(res.data);
+                  _this.userInfo = res.data;
                 })["catch"](function (error) {
-                  console.log('error:', error);
+                  console.log("error:", error);
                   return;
                 });
 
@@ -2179,7 +2187,35 @@ var EXTENSION = '.jpg';
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee);
+      }))();
+    },
+    getCardList: function () {
+      var _getCardList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var _this2 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/getcard", {
+                  params: {
+                    my_user_id: this.$store.state.userId
+                  }
+                }).then(function (res) {
+                  _this2.setCardList(res.data);
+                })["catch"](function (error) {
+                  console.log("error:", error);
+                  return;
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
       }));
 
       function getCardList() {
@@ -3251,6 +3287,8 @@ var render = function () {
   return _c(
     "div",
     [
+      _c("player-info-area", { attrs: { userInfo: _vm.userInfo } }),
+      _vm._v(" "),
       _c(
         "v-container",
         { attrs: { fluid: "" } },
@@ -3268,7 +3306,12 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _c("card-list-area", { attrs: { cardList: _vm.cardList } }),
+          _c(
+            "div",
+            { attrs: { id: "footer" } },
+            [_c("card-list-area", { attrs: { cardList: _vm.cardList } })],
+            1
+          ),
         ],
         1
       ),
