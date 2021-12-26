@@ -1,11 +1,15 @@
 <template>
   <div>
     <player-info-area :userInfo="userInfo" />
+    <div>
+      <v-btn rounded elevation="10" @click="updateDisp">表示更新</v-btn>
+      <v-btn rounded elevation="10" @click="getRanking">ランキング表示</v-btn>
+    </div>
     <v-container fluid>
       <!-- 問題&回答表示エリア -->
       <v-row>
         <v-col cols="10" offset="1">
-          <question-area />
+          <question-area :key="'q' + resetQuestion" />
         </v-col>
       </v-row>
       <!-- 手札表示エリア -->
@@ -13,6 +17,7 @@
         <card-list-area :cardList="cardList" />
       </div>
     </v-container>
+    <ranking-dialog :dialog="dispRanking" @change="dispRanking = $event" />
   </div>
 </template>
 
@@ -22,6 +27,7 @@ import axios from "axios";
 const PlayerInfoArea = () => import("../components/PlayerInfoArea");
 const CardListArea = () => import("../components/CardListArea");
 const QuestionArea = () => import("../components/QuestionArea");
+const RankingDialog = () => import("../components/RankingDialog");
 
 const IMAGE_DIR = "./images/player/";
 const NO_IMAGE = "NoImage.png";
@@ -32,6 +38,7 @@ export default {
     PlayerInfoArea,
     CardListArea,
     QuestionArea,
+    RankingDialog,
   },
   data() {
     return {
@@ -45,6 +52,8 @@ export default {
             department: "unknown dept",
           };
         }),
+      resetQuestion: 0,
+      dispRanking: false,
     };
   },
   created() {
@@ -94,6 +103,27 @@ export default {
           department: card.department,
         };
       });
+    },
+    // 表示更新
+    updateDisp: function() {
+      this.resetQuestion++;
+    },
+    // ランキング表示
+    getRanking: async function() {
+      await axios
+        .get("/api/axios/isopenranking", {
+          params: {
+          },
+        })
+        .then((res) => {
+          if (res.data) {
+              this.dispRanking = true;
+          }
+        })
+        .catch((error) => {
+          console.log("error:", error);
+          return;
+        });
     },
   },
 };

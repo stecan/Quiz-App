@@ -159,11 +159,14 @@ class AxiosMainController extends Controller
     // 回答者抽選
     public function drawingPlayer(Request $request)
     {
+        // 再抽選を考慮
+        $kbn = isset($request['retry']) && $request['retry'] == '1' ? '1' : '9';
+
         // 回答中→回答済 更新
         $players = m_user::where('a_kbn', '=', '2')->get(); /* 回答中 */
         foreach ($players as $data)
         {
-            $data->a_kbn = '9';
+            $data->a_kbn = $kbn;
             $data->save();
         }
 
@@ -329,6 +332,12 @@ class AxiosMainController extends Controller
         return $player;
     }
 
+    // ランキング開示可否
+    public function isOpenRanking(Request $request)
+    {
+        return !t_question::where('q_kbn', '<>', '9')->exists();
+    }
+
     // ランキング取得
     public function getRanking(Request $request)
     {
@@ -389,6 +398,16 @@ class AxiosMainController extends Controller
             // 手札テーブル リセット
             t_follower::truncate();
         }
+    }
+
+    // ゲーム終了
+    public function endGame(Request $request)
+    {
+        $update = [
+            'q_kbn' => 9,
+        ];
+        DB::table('t_question')
+            ->update($update);
     }
 
     // private:抽選
