@@ -2114,6 +2114,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -3261,6 +3262,8 @@ var render = function () {
   return _c(
     "div",
     [
+      _c("player-info-area", { attrs: { userInfo: _vm.userInfo } }),
+      _vm._v(" "),
       _c(
         "v-container",
         { attrs: { fluid: "" } },

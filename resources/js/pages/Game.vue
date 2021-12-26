@@ -1,5 +1,6 @@
 <template>
 <div>
+  <player-info-area :userInfo="userInfo" />
   <v-container fluid>
     <!-- 問題&回答表示エリア -->
     <v-row>
