@@ -2155,16 +2155,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/axios/auth", {
                   emp_no: _this.empNo,
                   password: _this.password
-                }).then(function (response) {
+                }).then(function (res) {
                   _this.overlay = false;
 
-                  if (response.data) {
+                  if (res.data != 0) {
                     _this.$store.commit("setUserId", _this.empNo);
 
                     if (_this.empNo == "99999") {
                       _this.$router.push("admin");
-                    } else {
+                    }
+
+                    if (res.data == 1) {
                       _this.$router.push("followerSelect");
+                    } else if (res.data == 2) {
+                      _this.$router.push("/");
                     }
                   } else {
                     _this.messagevisible = true;

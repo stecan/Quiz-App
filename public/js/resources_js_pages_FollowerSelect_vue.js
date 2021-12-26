@@ -2156,6 +2156,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 
@@ -2169,10 +2190,20 @@ var EXTENSION = ".JPG";
   data: function data() {
     return {
       overlay: false,
-      cardList: []
+      cardList: [],
+      confirmDialog: false,
+      dialog: false
     };
   },
   methods: {
+    execConfirmDialog: function execConfirmDialog() {
+      this.confirmDialog = true;
+    },
+    closeDialog: function closeDialog() {
+      this.confirmDialog = false;
+      this.dialog = false;
+      this.overlay = false;
+    },
     getFollowerList: function getFollowerList() {
       var _this = this;
 
@@ -2207,6 +2238,40 @@ var EXTENSION = ".JPG";
             }
           }
         }, _callee);
+      }))();
+    },
+    confirmFollower: function confirmFollower() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/confirmcard", {
+                  params: {
+                    my_user_id: _this2.$store.state.userId
+                  }
+                }).then(function (res) {
+                  if (res.data) {
+                    _this2.overlay = false;
+
+                    _this2.$router.push("/");
+                  } else {
+                    _this2.dialog = true;
+                  }
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this2.overlay = false;
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -3805,6 +3870,109 @@ var render = function () {
   return _c(
     "div",
     [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "320" },
+          model: {
+            value: _vm.dialog,
+            callback: function ($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog",
+          },
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "text-h5" }, [
+                _vm._v(" 注意 "),
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v("手札が20枚ではありません。再選択を行ってください。"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red darken-1", text: "" },
+                      on: { click: _vm.closeDialog },
+                    },
+                    [_vm._v(" 閉じる ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "320" },
+          model: {
+            value: _vm.confirmDialog,
+            callback: function ($$v) {
+              _vm.confirmDialog = $$v
+            },
+            expression: "confirmDialog",
+          },
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "text-h5" }, [
+                _vm._v(" 注意 "),
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v("一度確定を行うと取り消しはできません。"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red darken-1", text: "" },
+                      on: { click: _vm.closeDialog },
+                    },
+                    [_vm._v(" 閉じる ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary darken-1", text: "" },
+                      on: { click: _vm.confirmFollower },
+                    },
+                    [_vm._v(" 確定 ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("v-app-bar", { attrs: { id: "app-bar", fixed: "", app: "" } }, [
         _c(
           "div",
@@ -3822,7 +3990,10 @@ var render = function () {
             _vm._v(" "),
             _c(
               "v-btn",
-              { attrs: { to: "/", color: "red", outlined: "", "x-large": "" } },
+              {
+                attrs: { color: "red", outlined: "", "x-large": "" },
+                on: { click: _vm.execConfirmDialog },
+              },
               [_vm._v("確定")]
             ),
           ],

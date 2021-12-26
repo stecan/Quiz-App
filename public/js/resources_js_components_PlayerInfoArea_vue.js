@@ -34,15 +34,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: {},
   data: function data() {
     return {
-<<<<<<< HEAD
       userInfo: {
-        user_name: 'z',
+        user_name: '',
         point: 0
       },
       result: null
-=======
-      userInfo: null
->>>>>>> deploy
     };
   },
   methods: {
@@ -53,18 +49,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-<<<<<<< HEAD
                 self = this;
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/getuser', {
                   params: {
                     my_user_id: this.$store.state.userId
                   }
-=======
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/getuser', {
-                  my_user_id: this.$store.state.userId
->>>>>>> deploy
                 }).then(function (res) {
                   self.result = res.data;
                 })["catch"](function (error) {
