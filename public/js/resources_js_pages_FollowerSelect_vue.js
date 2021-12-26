@@ -2155,6 +2155,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 
@@ -2233,7 +2234,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#innerContainer[data-v-639650fa] {\r\n  max-width: 1175px;\r\n  margin: auto;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#innerContainer[data-v-639650fa] {\r\n  max-width: 1175px;\r\n  margin: auto;\n}\n#app-bar[data-v-639650fa] {\r\n  text-align: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3804,30 +3805,30 @@ var render = function () {
   return _c(
     "div",
     [
-      _c(
-        "v-app-bar",
-        { attrs: { id: "app-bar", absolute: "", app: "" } },
-        [
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "mr-5",
-              attrs: { color: "primary", outlined: "", "x-large": "" },
-              on: { click: _vm.getFollowerList },
-            },
-            [_vm._v("再選択")]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { to: "/", color: "red", outlined: "", "x-large": "" } },
-            [_vm._v("確定")]
-          ),
-        ],
-        1
-      ),
+      _c("v-app-bar", { attrs: { id: "app-bar", fixed: "", app: "" } }, [
+        _c(
+          "div",
+          { staticStyle: { margin: "auto" } },
+          [
+            _c(
+              "v-btn",
+              {
+                staticClass: "mr-5",
+                attrs: { color: "primary", outlined: "", "x-large": "" },
+                on: { click: _vm.getFollowerList },
+              },
+              [_vm._v("再選択")]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              { attrs: { to: "/", color: "red", outlined: "", "x-large": "" } },
+              [_vm._v("確定")]
+            ),
+          ],
+          1
+        ),
+      ]),
       _vm._v(" "),
       _c(
         "v-main",
