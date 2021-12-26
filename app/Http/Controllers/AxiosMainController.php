@@ -83,6 +83,23 @@ class AxiosMainController extends Controller
         return $result;
     }
 
+    // 手札確定
+    public function confirmCard(Request $request){
+        $myId = $request['my_user_id']; // ログインユーザID
+        $cardCount = t_follower::where('user_id', $myId)->count();
+
+        if($cardCount = 20)
+        {
+            m_user::where('user_id', $myId)->update(['fix_flg' => '1']);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
     // 手札取得
     public function getCard(Request $request)
     {

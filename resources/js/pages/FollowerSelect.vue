@@ -1,11 +1,12 @@
 <template>
   <div>
-    <v-app-bar id="app-bar" absolute app>
-      <v-spacer />
-      <v-btn class="mr-5" color="primary" outlined x-large @click="getFollowerList"
-        >再選択</v-btn
-      >
-      <v-btn to="/" color="red" outlined x-large>確定</v-btn>
+    <v-app-bar id="app-bar" fixed app>
+      <div style="margin: auto">
+        <v-btn class="mr-5" color="primary" outlined x-large @click="getFollowerList"
+          >再選択</v-btn
+        >
+        <v-btn to="/" color="red" outlined x-large>確定</v-btn>
+      </div>
     </v-app-bar>
     <v-main>
       <v-container fluid>
@@ -78,5 +79,8 @@ export default {
 #innerContainer {
   max-width: 1175px;
   margin: auto;
+}
+#app-bar {
+  text-align: center;
 }
 </style>

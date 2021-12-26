@@ -2151,7 +2151,7 @@ var EXTENSION = ".JPG";
   },
   data: function data() {
     return {
-      userInfo: "",
+      resetUser: 0,
       cardList: _toConsumableArray(Array(20)).map(function (_, i) {
         return i + 1;
       }).map(function (value) {
@@ -2171,25 +2171,24 @@ var EXTENSION = ".JPG";
       return;
     }
 
-    this.getUserInfo();
     this.getCardList();
   },
   methods: {
-    getUserInfo: function getUserInfo() {
-      var _this = this;
+    getCardList: function () {
+      var _getCardList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/getuser", {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/getcard", {
                   params: {
-                    my_user_id: _this.$store.state.userId
+                    my_user_id: this.$store.state.userId
                   }
                 }).then(function (res) {
-                  _this.userInfo = res.data;
+                  _this.setCardList(res.data);
                 })["catch"](function (error) {
                   console.log("error:", error);
                   return;
@@ -2200,35 +2199,7 @@ var EXTENSION = ".JPG";
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
-    getCardList: function () {
-      var _getCardList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var _this2 = this;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/getcard", {
-                  params: {
-                    my_user_id: this.$store.state.userId
-                  }
-                }).then(function (res) {
-                  _this2.setCardList(res.data);
-                })["catch"](function (error) {
-                  console.log("error:", error);
-                  return;
-                });
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
+        }, _callee, this);
       }));
 
       function getCardList() {
@@ -2248,23 +2219,24 @@ var EXTENSION = ".JPG";
     },
     // 表示更新
     updateDisp: function updateDisp() {
+      this.resetUser++;
       this.resetQuestion++;
     },
     // ランキング表示
     getRanking: function () {
-      var _getRanking = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var _this3 = this;
+      var _getRanking = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var _this2 = this;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context3.next = 2;
+                _context2.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/isopenranking", {
                   params: {}
                 }).then(function (res) {
                   if (res.data) {
-                    _this3.dispRanking = true;
+                    _this2.dispRanking = true;
                   }
                 })["catch"](function (error) {
                   console.log("error:", error);
@@ -2273,10 +2245,10 @@ var EXTENSION = ".JPG";
 
               case 2:
               case "end":
-                return _context3.stop();
+                return _context2.stop();
             }
           }
-        }, _callee3);
+        }, _callee2);
       }));
 
       function getRanking() {
@@ -3339,7 +3311,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("player-info-area", { attrs: { userInfo: _vm.userInfo } }),
+      _c("player-info-area", { key: "user" + _vm.resetUser }),
       _vm._v(" "),
       _c(
         "div",
