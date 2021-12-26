@@ -18,8 +18,8 @@
 
 <script>
 import axios from "axios";
+import PlayerInfoArea from '../components/PlayerInfoArea.vue';
 //axios.defaults.baseURL = '/bingo2021';
-const PlayerInfoArea = () => import("../components/PlayerInfoArea");
 const CardListArea = () => import("../components/CardListArea");
 const QuestionArea = () => import("../components/QuestionArea");
 
@@ -29,9 +29,9 @@ const EXTENSION = ".jpg";
 
 export default {
   components: {
-    PlayerInfoArea,
     CardListArea,
     QuestionArea,
+    PlayerInfoArea,
   },
   data() {
     return {
