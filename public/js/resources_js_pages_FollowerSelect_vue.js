@@ -2087,16 +2087,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     profileImagePath: {
@@ -2159,12 +2149,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 
-var IMAGE_DIR = './images/player/';
-var NO_IMAGE = 'NoImage.png';
-var EXTENSION = '.jpg';
+var IMAGE_DIR = "./images/player/";
+var NO_IMAGE = "NoImage.png";
+var EXTENSION = ".jpg";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     UserInfoCard: _components_UserInfoCard_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -3344,15 +3340,15 @@ var render = function () {
     [
       _c("v-img", {
         staticClass: "grey darken-3",
-        attrs: { height: "250", contain: "", src: _vm.profileImagePath },
+        attrs: { height: "180", contain: "", src: _vm.profileImagePath },
       }),
       _vm._v(" "),
       _c("v-card-text", { staticClass: "mb-0 pb-0 text-left" }, [
-        _vm._v("\n        " + _vm._s(_vm.department) + "\n    "),
+        _vm._v("\n    " + _vm._s(_vm.department) + "\n  "),
       ]),
       _vm._v(" "),
       _c("v-card-text", { staticClass: "mt-0 pt-0 text-left" }, [
-        _vm._v("\n        " + _vm._s(_vm.userName) + "\n    "),
+        _vm._v("\n    " + _vm._s(_vm.userName) + "\n  "),
       ]),
     ],
     1
@@ -3414,9 +3410,11 @@ var render = function () {
         [
           _c(
             "v-container",
+            { attrs: { fluid: "" } },
             [
               _c(
                 "v-row",
+                { staticStyle: { "max-width": "1175", margin: "0, auto" } },
                 _vm._l(_vm.cardList, function (card) {
                   return _c(
                     "v-col",
