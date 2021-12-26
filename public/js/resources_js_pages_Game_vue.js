@@ -3262,7 +3262,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("PlayerInfoArea", { attrs: { userInfo: _vm.userInfo } }),
+      _c("player-info-area", { attrs: { userInfo: _vm.userInfo } }),
       _vm._v(" "),
       _c(
         "v-container",
