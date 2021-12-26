@@ -2163,9 +2163,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     if (_this.empNo == "99999") {
                       _this.$router.push("admin");
-                    }
-
-                    if (res.data == 1) {
+                    } else if (res.data == 1) {
                       _this.$router.push("followerSelect");
                     } else if (res.data == 2) {
                       _this.$router.push("/");

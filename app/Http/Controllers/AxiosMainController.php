@@ -424,11 +424,14 @@ class AxiosMainController extends Controller
     // ゲーム終了
     public function endGame(Request $request)
     {
-        $update = [
-            'q_kbn' => 9,
-        ];
-        DB::table('t_question')
-            ->update($update);
+        if($request['reset_pass'] == 'bingo2021system')
+        {
+            $update = [
+                'q_kbn' => 9,
+            ];
+            DB::table('t_question')
+                ->update($update);
+        }
     }
 
     // private:抽選

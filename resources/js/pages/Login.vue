@@ -65,8 +65,7 @@ export default {
               this.$store.commit("setUserId", this.empNo);
               if (this.empNo == "99999") {
                 this.$router.push("admin");
-              }
-              if (res.data == 1) {
+              }else if (res.data == 1) {
                 this.$router.push("followerSelect");
               } else if (res.data == 2) {
                 this.$router.push("/");

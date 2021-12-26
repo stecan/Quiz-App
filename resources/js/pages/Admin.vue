@@ -105,7 +105,9 @@ export default {
             var self = this;
             await axios.get('/api/axios/drawingplayer',
             {
-                retry: retryMode,
+                params: {
+                    retry: retryMode,
+                },
             }).then(res =>
             {
             }).catch(function (error) {

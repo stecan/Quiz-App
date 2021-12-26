@@ -2811,7 +2811,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 self = this;
                 _context2.next = 10;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/drawingplayer', {
-                  retry: retryMode
+                  params: {
+                    retry: retryMode
+                  }
                 }).then(function (res) {})["catch"](function (error) {
                   console.log(error);
                   return;
