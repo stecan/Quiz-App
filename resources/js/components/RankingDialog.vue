@@ -63,7 +63,7 @@ export default {
         },
         close: function()
         {
-            this.dialog = false;
+            this.$emit('change', false);
         },
     },
     created() {

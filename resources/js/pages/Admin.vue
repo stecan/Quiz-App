@@ -38,7 +38,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <ranking-dialog :dialog="dispRanking" />
+        <ranking-dialog :dialog="dispRanking" @change="dispRanking = $event" />
     </div>
 </template>
 
