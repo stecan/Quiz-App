@@ -32,7 +32,7 @@ import UserInfoCard from "../components/UserInfoCard.vue";
 
 const IMAGE_DIR = "./images/player/";
 const NO_IMAGE = "NoImage.png";
-const EXTENSION = ".jpg";
+const EXTENSION = ".JPG";
 
 export default {
   components: {
