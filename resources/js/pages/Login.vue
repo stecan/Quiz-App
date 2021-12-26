@@ -59,14 +59,17 @@ export default {
             emp_no: this.empNo,
             password: this.password,
           })
-          .then((response) => {
+          .then((res) => {
             this.overlay = false;
-            if (response.data) {
+            if (res.data != 0) {
               this.$store.commit("setUserId", this.empNo);
               if (this.empNo == "99999") {
                 this.$router.push("admin");
-              } else {
+              }
+              if (res.data == 1) {
                 this.$router.push("followerSelect");
+              } else if (res.data == 2) {
+                this.$router.push("/");
               }
             } else {
               this.messagevisible = true;

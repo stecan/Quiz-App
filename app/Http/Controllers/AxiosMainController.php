@@ -17,7 +17,7 @@ class AxiosMainController extends Controller
     // 回答者最大数
     public static $_challengerMax = 3;
 
-    // Auth
+    // Auth (戻り値 0:失敗　１:成功　2:成功(手札確定済))
     public function Auth(Request $request){
         $myId = $request['emp_no'];
         $myPassword = $request['password'];
@@ -26,7 +26,7 @@ class AxiosMainController extends Controller
 
         if($user == null || $user->password != $myPassword)
         {
-            return false;
+            return 0;
         }
 
         if($user->a_kbn == '0' && !$user->admin_flg)
@@ -34,8 +34,12 @@ class AxiosMainController extends Controller
             $user->a_kbn = '1';
             $user->save();
         }
-
-        return true;
+        if($user->fix_flg == '0') {
+            return 1;
+        }
+        else {
+            return 2;
+        }
     }
 
     // プレイヤー情報取得
@@ -88,7 +92,7 @@ class AxiosMainController extends Controller
         $myId = $request['my_user_id']; // ログインユーザID
         $cardCount = t_follower::where('user_id', $myId)->count();
 
-        if($cardCount = 20)
+        if($cardCount == 20)
         {
             m_user::where('user_id', $myId)->update(['fix_flg' => '1']);
             return true;
