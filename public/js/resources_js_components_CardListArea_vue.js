@@ -11108,7 +11108,7 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("v-card-title", { staticClass: "pt-1" }, [
-                _vm._v(_vm._s(card.user_name)),
+                _vm._v(_vm._s(card.userName)),
               ]),
               _vm._v(" "),
               _c("v-card-subtitle", { staticClass: "pb-1" }, [

@@ -2114,8 +2114,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
+ //axios.defaults.baseURL = '/bingo2021';
 
 var CardListArea = function CardListArea() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_CardListArea_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/CardListArea */ "./resources/js/components/CardListArea.vue"));

@@ -4,7 +4,7 @@
     #</IfModule>
 
     RewriteEngine On
-    RewriteBase /bingo2021
+    #RewriteBase /bingo2021
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -13,8 +13,8 @@
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
-    #RewriteRule ^ %1 [L,R=301]
-    RewriteRule ^(.*)/$ /bingo2021/$1 [L,R=301]
+    RewriteRule ^ %1 [L,R=301]
+    #RewriteRule ^(.*)/$ /bingo2021/$1 [L,R=301]
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

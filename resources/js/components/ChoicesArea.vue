@@ -30,7 +30,7 @@
 
 <script>
 import axios from 'axios';
-axios.defaults.baseURL = '/bingo2021';
+//axios.defaults.baseURL = '/bingo2021';
 const TextButton = () => import('./common/TextButton');
 export default {
     components:{
