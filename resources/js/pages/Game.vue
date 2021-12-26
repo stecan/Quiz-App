@@ -23,7 +23,6 @@
 
 <script>
 import axios from "axios";
-import PlayerInfoArea from '../components/PlayerInfoArea.vue';
 axios.defaults.baseURL = '/bingo2021';
 const PlayerInfoArea = () => import("../components/PlayerInfoArea");
 const CardListArea = () => import("../components/CardListArea");
@@ -39,7 +38,6 @@ export default {
     PlayerInfoArea,
     CardListArea,
     QuestionArea,
-    PlayerInfoArea,
     RankingDialog,
   },
   data() {
