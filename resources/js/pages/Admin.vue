@@ -8,15 +8,17 @@
                 </v-col>
             </v-row>
 
+            <v-row>&nbsp;</v-row>
+
             <question-area :adminFlg="true" :key="'q' + resetQuestion" />
+
+            <v-row>&nbsp;</v-row>
 
             <v-row>
                 <v-col>
                     <v-btn rounded elevation="10" @click="drawingChallenger">回答者抽選</v-btn>
                 </v-col>
             </v-row>
-
-            <challenger-area :key="'c' + resetChallenger" />
 
             <answer-status-area />
 
@@ -93,7 +95,7 @@ export default {
                console.log(error);
                return;
             });
-            self.resetChallenger++;
+            self.resetQuestion++;
         },
         // 回答開示
         takeAnswer: async function() {
