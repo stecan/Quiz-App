@@ -1,5 +1,6 @@
 <template>
 <div>
+  <PlayerInfoArea :userInfo="userInfo" />
   <v-container fluid>
     <!-- 問題&回答表示エリア -->
     <v-row>
@@ -18,7 +19,7 @@
 <script>
 import axios from 'axios';
 axios.defaults.baseURL = '/bingo2021';
-
+const PlayerInfoArea = () => import("../components/PlayerInfoArea");
 const CardListArea = () => import("../components/CardListArea");
 const QuestionArea = () => import("../components/QuestionArea");
 
@@ -28,11 +29,16 @@ const EXTENSION = '.jpg';
 
 export default {
   components: {
+    PlayerInfoArea,
     CardListArea,
     QuestionArea,
   },
   data() {
     return {
+      userInfo:{
+        userName:"●● ●●●●",
+        point:"100"
+      },
       cardList: [...Array(20)].map((_, i) => i + 1).map(value => {
         return {
           profileImagePath: "https://placehold.jp/150x200.png",
