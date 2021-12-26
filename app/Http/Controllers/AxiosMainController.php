@@ -16,14 +16,26 @@ class AxiosMainController extends Controller
     public static $_followerMax = 20;
     // 回答者最大数
     public static $_challengerMax = 3;
+
     // Auth
     public function Auth(Request $request){
         $myId = $request['emp_no'];
         $myPassword = $request['password'];
 
-        return m_user::where('user_id', '=', $myId)
-        ->where('password', '=', $myPassword)
-        ->exists();
+        $user = m_user::where('user_id', '=', $myId)->first();
+
+        if($user == null || $user->password != $myPassword)
+        {
+            return false;
+        }
+
+        if($user->a_kbn == '0' && !$user->admin_flg)
+        {
+            $user->a_kbn = '1';
+            $user->save();
+        }
+
+        return true;
     }
 
     // プレイヤー情報取得
@@ -253,7 +265,7 @@ class AxiosMainController extends Controller
         foreach ($players as $data)
         {
             // 得点計算
-            $point = t_follower::join('t_answer', function($join) {
+            $point = t_follower::join('t_answer', function($join) use ($data) {
                 $join->on('t_follower.follower_user_id', '=', 't_answer.a_user_id')
                   ->where('t_follower.user_id', '=', $data->user_id);
             })
