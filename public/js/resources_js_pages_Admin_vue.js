@@ -2789,7 +2789,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 self = this;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/drawingplayer', {}).then(function (res) {})["catch"](function (error) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/axios/drawingplayer', {}).then(function (res) {})["catch"](function (error) {
                   console.log(error);
                   return;
                 });
