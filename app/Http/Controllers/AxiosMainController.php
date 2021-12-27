@@ -368,7 +368,7 @@ class AxiosMainController extends Controller
             'user_name',
             'department',
             'point',
-            DB::raw('(select count(point) FROM m_user b WHERE m_user.point < b.point) + 1 as rank'),
+            DB::raw("(select count(point) FROM m_user b WHERE m_user.point < b.point) + 1 as 'rank'"),
         ])->where('a_kbn', '<>', '0')
         ->orderByRaw('point desc, user_id asc')
         ->take(10)->get();
