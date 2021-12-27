@@ -97,7 +97,8 @@ export default {
         setPanelists: function(panelists) {
             this.panelists = panelists.map(panelist => {
                 return {
-                    profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION
+                    profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION,
+                    user_name: panelist.user_name
                 }
                 // ほんとはこう書きたい
                 // return {
