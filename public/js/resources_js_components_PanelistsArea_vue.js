@@ -37,6 +37,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     panelists: {
@@ -136,28 +151,76 @@ var render = function () {
     _vm.panelists.length
       ? _c(
           "div",
-          _vm._l(_vm.panelists, function (panelist, index) {
-            return _c(
-              "v-avatar",
-              { key: index, staticClass: "ma-2", attrs: { size: "125" } },
-              [
-                _c("img", {
-                  attrs: {
-                    height: "250",
-                    "min-width": "180",
-                    src: panelist.profileImagePath,
-                  },
-                }),
-              ]
-            )
-          }),
+          [
+            _c(
+              "v-row",
+              _vm._l(_vm.panelists, function (panelist, index) {
+                return _c(
+                  "v-col",
+                  { key: index, attrs: { cols: "4" } },
+                  [
+                    _c(
+                      "v-card",
+                      { attrs: { flat: "" } },
+                      [
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { staticClass: "pb-0", attrs: { cols: "12" } },
+                              [
+                                _c(
+                                  "v-avatar",
+                                  {
+                                    staticClass: "ma-2",
+                                    attrs: { size: "125" },
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        height: "250",
+                                        "min-width": "180",
+                                        src: panelist.profileImagePath,
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-text",
+                                  { staticClass: "text-center" },
+                                  [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(panelist.user_name) +
+                                        "\n                            "
+                                    ),
+                                  ]
+                                ),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                )
+              }),
+              1
+            ),
+          ],
           1
         )
       : _c(
           "div",
           [
             _c("v-card-text", [
-              _vm._v("\r\n            回答者が決定していません。\r\n        "),
+              _vm._v("\n            回答者が決定していません。\n        "),
             ]),
           ],
           1
