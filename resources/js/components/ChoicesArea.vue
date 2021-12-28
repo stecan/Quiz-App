@@ -49,7 +49,7 @@ export default {
     },
     data() {
         return {
-            selection: this.choices[0],
+            selection: 1,
             sentAnswer: false,
         }
     },
