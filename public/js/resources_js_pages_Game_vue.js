@@ -2161,6 +2161,7 @@ var EXTENSION = ".JPG";
         };
       }),
       resetQuestion: 0,
+      resetRanking: 0,
       dispRanking: false
     };
   },
@@ -2235,6 +2236,7 @@ var EXTENSION = ".JPG";
                   params: {}
                 }).then(function (res) {
                   if (res.data) {
+                    _this2.resetRanking++;
                     _this2.dispRanking = true;
                   }
                 })["catch"](function (error) {
@@ -3364,6 +3366,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("ranking-dialog", {
+        key: "rank" + _vm.resetRanking,
         attrs: { dialog: _vm.dispRanking },
         on: {
           change: function ($event) {

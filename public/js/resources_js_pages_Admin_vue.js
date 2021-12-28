@@ -2456,7 +2456,8 @@ var EXTENSION = '.JPG';
     setPanelists: function setPanelists(panelists) {
       this.panelists = panelists.map(function (panelist) {
         return {
-          profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION
+          profileImagePath: IMAGE_DIR + PLAYER_SUFFIX + panelist.user_id + EXTENSION,
+          user_name: panelist.user_name
         }; // ほんとはこう書きたい
         // return {
         //      profileImagePath: fs.existsSync(imgDir) ? imgDir : IMAGE_DIR + NO_IMAGE
@@ -2731,6 +2732,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       /* 変数宣言 */
       resetQuestion: 0,
+      resetRanking: 0,
       dispRanking: false,
       result: null
     };
@@ -2880,6 +2882,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // ランキング表示
     getRanking: function getRanking() {
       alert('プレイヤーには見えません。');
+      this.resetRanking++;
       this.dispRanking = true;
     },
     endGame: function () {
@@ -4838,6 +4841,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("ranking-dialog", {
+        key: "rank" + _vm.resetRanking,
         attrs: { dialog: _vm.dispRanking },
         on: {
           change: function ($event) {

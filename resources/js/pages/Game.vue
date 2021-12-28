@@ -17,7 +17,7 @@
         <card-list-area :cardList="cardList" />
       </div>
     </v-container>
-    <ranking-dialog :dialog="dispRanking" @change="dispRanking = $event" />
+    <ranking-dialog :key="'rank' + resetRanking" :dialog="dispRanking" @change="dispRanking = $event" />
   </div>
 </template>
 
@@ -53,6 +53,7 @@ export default {
           };
         }),
       resetQuestion: 0,
+      resetRanking: 0,
       dispRanking: false,
     };
   },
@@ -102,6 +103,7 @@ export default {
         })
         .then((res) => {
           if (res.data) {
+              this.resetRanking++;
               this.dispRanking = true;
           }
         })
