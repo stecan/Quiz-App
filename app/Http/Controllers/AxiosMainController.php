@@ -295,10 +295,12 @@ class AxiosMainController extends Controller
             })
             ->sum('t_answer.point');
     
-            $answer = t_answer::where('a_user_id', '=', $data->user_id)->first();
+            $answer = t_answer::where('a_user_id', '=', $data->user_id)
+                ->where('point', '=', 2)
+                ->first();
             if($answer != null)
             {
-                $point += $answer->point + 1; // 本人回答ボーナス
+                $point += $answer->point + 1; // 本人正解ボーナス
             }
     
             // ユーザ情報 得点 更新
