@@ -2715,8 +2715,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+ //axios.defaults.baseURL = '/bingo2021';
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 
 
@@ -2733,6 +2733,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       /* 変数宣言 */
       resetQuestion: 0,
+      resetRanking: 0,
       dispRanking: false,
       result: null
     };
@@ -2882,6 +2883,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // ランキング表示
     getRanking: function getRanking() {
       alert('プレイヤーには見えません。');
+      this.resetRanking++;
       this.dispRanking = true;
     },
     endGame: function () {
@@ -4840,6 +4842,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("ranking-dialog", {
+        key: "rank" + _vm.resetRanking,
         attrs: { dialog: _vm.dispRanking },
         on: {
           change: function ($event) {

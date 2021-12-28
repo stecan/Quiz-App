@@ -53,8 +53,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
+//
+//
+//
+ //axios.defaults.baseURL = '/bingo2021';
 
 var TextButton = function TextButton() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_common_TextButton_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./common/TextButton */ "./resources/js/components/common/TextButton.vue"));
@@ -75,7 +77,8 @@ var TextButton = function TextButton() {
   },
   data: function data() {
     return {
-      selection: this.choices[0]
+      selection: this.choices[0],
+      sentAnswer: false
     };
   },
   methods: {
@@ -94,13 +97,14 @@ var TextButton = function TextButton() {
 
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/axios/sendanswer', {
-                  params: {
-                    my_user_id: this.$store.state.userId,
-                    my_answer: this.selection
-                  }
+                  my_user_id: this.$store.state.userId,
+                  my_answer: this.selection
                 }).then(function (res) {
+                  _this.sentAnswer = true;
+                  window.alert(_this.selection + " : " + _this.choices[_this.selection - 1] + "が送信されました。");
                   console.log(_this.selection + "が送信されました。");
                 })["catch"](function (err) {
+                  window.alert("回答の送信に失敗しました。再度送信を実施してください。");
                   console.log(err);
                 });
 
@@ -243,16 +247,18 @@ var render = function () {
       !_vm.adminFlg
         ? _c(
             "v-card-actions",
-            { staticClass: "d-flex justify-center" },
+            { staticClass: "d-flex justify-center mb-2" },
             [
               _c(
                 "v-btn",
                 {
+                  staticClass: "mt-0 pt-0",
                   attrs: {
                     color: "deep-purple lighten-2",
                     elevation: "10",
                     text: "",
                     outlined: "",
+                    disabled: _vm.sentAnswer,
                   },
                   on: {
                     click: function ($event) {
@@ -260,7 +266,15 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("\n            回答を送信する\n        ")]
+                [
+                  !_vm.sentAnswer
+                    ? _c("span", [_vm._v("回答を送信する")])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.sentAnswer
+                    ? _c("span", [_vm._v("回答送信済み")])
+                    : _vm._e(),
+                ]
               ),
             ],
             1

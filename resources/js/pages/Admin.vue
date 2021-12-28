@@ -39,18 +39,17 @@
                 </v-col>
             </v-row>
         </v-container>
-        <ranking-dialog :dialog="dispRanking" @change="dispRanking = $event" />
+        <ranking-dialog :key="'rank' + resetRanking" :dialog="dispRanking" @change="dispRanking = $event" />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
-axios.defaults.baseURL = '/bingo2021';
+//axios.defaults.baseURL = '/bingo2021';
 import QuestionArea from '../components/QuestionArea.vue'
 import ChallengerArea from '../components/ChallengerArea.vue'
 import RankingDialog from '../components/RankingDialog.vue';
 import AnswerStatusArea from '../components/AnswerStatusArea.vue';
-
 export default {
     components: {
         ChallengerArea,
@@ -63,6 +62,7 @@ export default {
     data:() => ({
         /* 変数宣言 */
         resetQuestion: 0,
+        resetRanking: 0,
         dispRanking: false,
         result: null,
     }),
@@ -137,6 +137,7 @@ export default {
         // ランキング表示
         getRanking: function() {
             alert('プレイヤーには見えません。');
+            this.resetRanking++;
             this.dispRanking = true;
         },
         endGame: async function() {
