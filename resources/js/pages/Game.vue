@@ -1,10 +1,6 @@
 <template>
   <div>
-    <player-info-area :key="'user' + resetUser" />
-    <div>
-      <v-btn rounded elevation="10" @click="updateDisp">表示更新</v-btn>
-      <v-btn rounded elevation="10" @click="getRanking">ランキング表示</v-btn>
-    </div>
+    <player-info-area :key="'user' + resetUser" @execute="updateDisp" />
     <v-container fluid>
       <!-- 問題&回答表示エリア -->
       <v-row>
@@ -90,12 +86,18 @@ export default {
       });
     },
     // 表示更新
-    updateDisp: function() {
-      this.resetUser++;
-      this.resetQuestion++;
+    updateDisp: function(mode) {
+      if(mode == '1'){
+        this.resetUser++;
+        this.resetQuestion++;
+      }else if(mode == '2'){
+        this.getRanking();
+      }
     },
     // ランキング表示
     getRanking: async function() {
+      var self = this;
+      self.dispRanking = false;
       await axios
         .get("/api/axios/isopenranking", {
           params: {
@@ -103,14 +105,17 @@ export default {
         })
         .then((res) => {
           if (res.data) {
-              this.resetRanking++;
-              this.dispRanking = true;
+            self.dispRanking = true;
           }
         })
         .catch((error) => {
           console.log("error:", error);
           return;
         });
+        if(self.dispRanking)
+        {
+          self.resetRanking++;
+        }
     },
   },
 };
