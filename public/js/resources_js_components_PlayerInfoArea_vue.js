@@ -28,6 +28,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -88,7 +90,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return getUserInfo;
-    }()
+    }(),
+    emitRiseEvent: function emitRiseEvent(mode) {
+      this.$emit('execute', mode);
+    }
   },
   created: function created() {
     this.getUserInfo();
@@ -185,6 +190,32 @@ var render = function () {
     "v-app-bar",
     { attrs: { flat: "" } },
     [
+      _c(
+        "v-btn",
+        {
+          attrs: { rounded: "", elevation: "10" },
+          on: {
+            click: function ($event) {
+              return _vm.emitRiseEvent("1")
+            },
+          },
+        },
+        [_vm._v("表示更新")]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          attrs: { rounded: "", elevation: "10" },
+          on: {
+            click: function ($event) {
+              return _vm.emitRiseEvent("2")
+            },
+          },
+        },
+        [_vm._v("ランキング表示")]
+      ),
+      _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
       _c("p", { staticClass: "text-h5 mr-5", staticStyle: { margin: "0" } }, [

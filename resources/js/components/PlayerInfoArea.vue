@@ -1,5 +1,7 @@
 <template>
   <v-app-bar flat>
+    <v-btn rounded elevation="10" @click="emitRiseEvent('1')">表示更新</v-btn>
+    <v-btn rounded elevation="10" @click="emitRiseEvent('2')">ランキング表示</v-btn>
     <v-spacer />
     <p class="text-h5 mr-5" style="margin: 0">USER : {{ userInfo.user_name }}</p>
     <p class="text-h5 mr-5" style="margin: 0">SCORE : {{ userInfo.point }}点</p>
@@ -34,6 +36,9 @@ export default {
         var ret = self.result;
         if(!ret) return;
         self.userInfo = ret;
+    },
+    emitRiseEvent: function(mode){
+      this.$emit('execute', mode);
     },
   },
   created() {
