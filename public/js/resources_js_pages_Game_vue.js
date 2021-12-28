@@ -2116,10 +2116,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
-//
  //axios.defaults.baseURL = '/bingo2021';
 
 var PlayerInfoArea = function PlayerInfoArea() {
@@ -2218,38 +2214,47 @@ var EXTENSION = ".JPG";
       });
     },
     // 表示更新
-    updateDisp: function updateDisp() {
-      this.resetUser++;
-      this.resetQuestion++;
+    updateDisp: function updateDisp(mode) {
+      if (mode == '1') {
+        this.resetUser++;
+        this.resetQuestion++;
+      } else if (mode == '2') {
+        this.getRanking();
+      }
     },
     // ランキング表示
     getRanking: function () {
       var _getRanking = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var _this2 = this;
-
+        var self;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                self = this;
+                self.dispRanking = false;
+                _context2.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/axios/isopenranking", {
                   params: {}
                 }).then(function (res) {
                   if (res.data) {
-                    _this2.resetRanking++;
-                    _this2.dispRanking = true;
+                    self.dispRanking = true;
                   }
                 })["catch"](function (error) {
                   console.log("error:", error);
                   return;
                 });
 
-              case 2:
+              case 4:
+                if (self.dispRanking) {
+                  self.resetRanking++;
+                }
+
+              case 5:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, this);
       }));
 
       function getRanking() {
@@ -3312,31 +3317,10 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("player-info-area", { key: "user" + _vm.resetUser }),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c(
-            "v-btn",
-            {
-              attrs: { rounded: "", elevation: "10" },
-              on: { click: _vm.updateDisp },
-            },
-            [_vm._v("表示更新")]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              attrs: { rounded: "", elevation: "10" },
-              on: { click: _vm.getRanking },
-            },
-            [_vm._v("ランキング表示")]
-          ),
-        ],
-        1
-      ),
+      _c("player-info-area", {
+        key: "user" + _vm.resetUser,
+        on: { execute: _vm.updateDisp },
+      }),
       _vm._v(" "),
       _c(
         "v-container",
