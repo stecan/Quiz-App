@@ -49,6 +49,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
@@ -70,6 +84,7 @@ var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';
 var PLAYER_SUFFIX = 'player/';
 var EXTENSION = '.JPG';
+var DEFAULT_IMAGE = IMAGE_DIR + QUESTION_SUFFIX + '99' + EXTENSION;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   /* コンポーネント */
   components: {
@@ -165,7 +180,7 @@ var EXTENSION = '.JPG';
       this.aDispFlg = question.a_disp_flg;
       this.qText = question.q_text;
       this.choices = new Array(question.option_1, question.option_2, question.option_3);
-      this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION;
+      this.qImgPath = question.id ? IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION : DEFAULT_IMAGE;
       this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + EXTENSION;
     },
     setPanelists: function setPanelists(panelists) {
@@ -274,28 +289,45 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-card", [
-    _c(
-      "div",
-      { staticClass: "d-flex flex-no-warp" },
-      [
-        _vm.aDispFlg
-          ? _c("question-image", { attrs: { imgPath: _vm.aImgPath } })
-          : _c("question-image", { attrs: { imgPath: _vm.qImgPath } }),
-        _vm._v(" "),
-        _c(
+    _vm.aDispFlg
+      ? _c(
           "div",
+          { staticClass: "d-flex flex-no-warp" },
+          [_c("question-image", { attrs: { imgPath: _vm.aImgPath } })],
+          1
+        )
+      : _c(
+          "div",
+          { staticClass: "d-flex flex-no-warp" },
           [
-            _c("choices-area", {
-              attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
-            }),
+            _vm.choices.includes(undefined)
+              ? _c("v-img", {
+                  attrs: {
+                    src: _vm.qImgPath,
+                    "max-height": "480px",
+                    contain: "",
+                  },
+                })
+              : _c("question-image", { attrs: { imgPath: _vm.qImgPath } }),
             _vm._v(" "),
-            _c("panelists-area", { attrs: { panelists: _vm.panelists } }),
+            !_vm.choices.includes(undefined)
+              ? _c(
+                  "div",
+                  [
+                    _c("choices-area", {
+                      attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
+                    }),
+                    _vm._v(" "),
+                    _c("panelists-area", {
+                      attrs: { panelists: _vm.panelists },
+                    }),
+                  ],
+                  1
+                )
+              : _vm._e(),
           ],
           1
         ),
-      ],
-      1
-    ),
   ])
 }
 var staticRenderFns = []

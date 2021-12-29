@@ -192,9 +192,9 @@ var render = function () {
                                   { staticClass: "text-center" },
                                   [
                                     _vm._v(
-                                      "\r\n                                " +
+                                      "\n                                " +
                                         _vm._s(panelist.user_name) +
-                                        "\r\n                            "
+                                        "\n                            "
                                     ),
                                   ]
                                 ),
@@ -220,7 +220,7 @@ var render = function () {
           "div",
           [
             _c("v-card-text", [
-              _vm._v("\r\n            回答者が決定していません。\r\n        "),
+              _vm._v("\n            回答者が決定していません。\n        "),
             ]),
           ],
           1
