@@ -69,6 +69,11 @@ export default {
     }),
     created() {
         /* 初期表示 */
+        if(this.$store.state.userId != '99999')
+        {
+            this.$router.push("/");
+            return;
+        }
     },
     methods: {
         /* メソッド */
