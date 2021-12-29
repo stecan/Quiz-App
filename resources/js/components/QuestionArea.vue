@@ -1,16 +1,30 @@
 <template>
 <v-card>
-    <div class="d-flex flex-no-warp">
+    <div
+        v-if="aDispFlg"
+        class="d-flex flex-no-warp"
+    >
         <!-- 問題画像＆解答画像表示エリア -->
         <question-image
-            v-if="aDispFlg"
             :imgPath="aImgPath"
+        />
+    </div>
+
+    <div
+        v-else
+        class="d-flex flex-no-warp"
+    >
+        <v-img
+            v-if="choices.includes(undefined)"
+            :src="qImgPath"
+            max-height="480px"
+            contain
         />
         <question-image
             v-else
             :imgPath="qImgPath"
         />
-        <div>
+        <div v-if="!choices.includes(undefined)">
             <!-- 選択肢表示エリア -->
             <choices-area
                 :adminFlg="adminFlg"
@@ -40,6 +54,7 @@ const QUESTION_SUFFIX = 'quiz/quiz';
 const ANSWER_SUFFIX = 'answer/ans_quiz';
 const PLAYER_SUFFIX = 'player/';
 const EXTENSION = '.JPG';
+const DEFAULT_IMAGE = IMAGE_DIR + QUESTION_SUFFIX + '99' + EXTENSION;
 
 export default {
     /* コンポーネント */
@@ -91,7 +106,9 @@ export default {
             this.aDispFlg = question.a_disp_flg;
             this.qText = question.q_text;
             this.choices = new Array(question.option_1, question.option_2, question.option_3)
-            this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION;
+            this.qImgPath = question.id
+                                ? IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION
+                                : DEFAULT_IMAGE;
             this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + EXTENSION;
         },
         setPanelists: function(panelists) {
