@@ -2335,6 +2335,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  //axios.defaults.baseURL = '/bingo2021';
 
 var QuestionImage = function QuestionImage() {
@@ -2355,6 +2369,7 @@ var QUESTION_SUFFIX = 'quiz/quiz';
 var ANSWER_SUFFIX = 'answer/ans_quiz';
 var PLAYER_SUFFIX = 'player/';
 var EXTENSION = '.JPG';
+var DEFAULT_IMAGE = IMAGE_DIR + QUESTION_SUFFIX + '99' + EXTENSION;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   /* コンポーネント */
   components: {
@@ -2450,7 +2465,7 @@ var EXTENSION = '.JPG';
       this.aDispFlg = question.a_disp_flg;
       this.qText = question.q_text;
       this.choices = new Array(question.option_1, question.option_2, question.option_3);
-      this.qImgPath = IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION;
+      this.qImgPath = question.id ? IMAGE_DIR + QUESTION_SUFFIX + question.q_id + EXTENSION : DEFAULT_IMAGE;
       this.aImgPath = IMAGE_DIR + ANSWER_SUFFIX + question.q_id + EXTENSION;
     },
     setPanelists: function setPanelists(panelists) {
@@ -2768,6 +2783,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     /* 初期表示 */
+    if (this.$store.state.userId != '99999') {
+      this.$router.push("/");
+      return;
+    }
   },
   methods: {
     /* メソッド */
@@ -3015,7 +3034,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@-webkit-keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n@keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n.ranking-row-enter[data-v-f22cdc7a] {\n  opacity: 0;\n}\n.ranking-row-enter-to[data-v-f22cdc7a] {\n  opacity: 1;\n  -webkit-animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n          animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n}\n.back-ground[data-v-f22cdc7a] {\n  position: absolute;\n  max-width: 550px;\n  max-height: 80%;\n}\n.icon[data-v-f22cdc7a] {\n  height: 80px;\n  max-width: 80px;\n}\n.scroll[data-v-f22cdc7a] {\n  height: 80vh;\n  max-height: 80vh;\n  overflow-y: auto;\n}\n.name[data-v-f22cdc7a] {\n  font: bold;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@-webkit-keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n@keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n.ranking-row-enter[data-v-f22cdc7a] {\n  opacity: 0;\n}\n.ranking-row-enter-to[data-v-f22cdc7a] {\n  opacity: 1;\n  -webkit-animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n          animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n}\n.icon[data-v-f22cdc7a] {\n  height: 80px;\n  max-width: 80px;\n}\n.scroll[data-v-f22cdc7a] {\n  height: 80vh;\n  max-height: 80vh;\n  overflow-y: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4965,28 +4984,45 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-card", [
-    _c(
-      "div",
-      { staticClass: "d-flex flex-no-warp" },
-      [
-        _vm.aDispFlg
-          ? _c("question-image", { attrs: { imgPath: _vm.aImgPath } })
-          : _c("question-image", { attrs: { imgPath: _vm.qImgPath } }),
-        _vm._v(" "),
-        _c(
+    _vm.aDispFlg
+      ? _c(
           "div",
+          { staticClass: "d-flex flex-no-warp" },
+          [_c("question-image", { attrs: { imgPath: _vm.aImgPath } })],
+          1
+        )
+      : _c(
+          "div",
+          { staticClass: "d-flex flex-no-warp" },
           [
-            _c("choices-area", {
-              attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
-            }),
+            _vm.choices.includes(undefined)
+              ? _c("v-img", {
+                  attrs: {
+                    src: _vm.qImgPath,
+                    "max-height": "480px",
+                    contain: "",
+                  },
+                })
+              : _c("question-image", { attrs: { imgPath: _vm.qImgPath } }),
             _vm._v(" "),
-            _c("panelists-area", { attrs: { panelists: _vm.panelists } }),
+            !_vm.choices.includes(undefined)
+              ? _c(
+                  "div",
+                  [
+                    _c("choices-area", {
+                      attrs: { adminFlg: _vm.adminFlg, choices: _vm.choices },
+                    }),
+                    _vm._v(" "),
+                    _c("panelists-area", {
+                      attrs: { panelists: _vm.panelists },
+                    }),
+                  ],
+                  1
+                )
+              : _vm._e(),
           ],
           1
         ),
-      ],
-      1
-    ),
   ])
 }
 var staticRenderFns = []
@@ -5103,7 +5139,7 @@ var render = function () {
                                 1
                               )
                             : index > _vm.show
-                            ? _c("v-col", [
+                            ? _c("v-col", { staticClass: "title" }, [
                                 _vm._v(
                                   "\n                        " +
                                     _vm._s(user.rank) +
@@ -5163,7 +5199,7 @@ var render = function () {
                                   expression: "index > show",
                                 },
                               ],
-                              staticClass: "name",
+                              staticClass: "title",
                             },
                             [_vm._v(_vm._s(user.user_name))]
                           ),
@@ -5173,7 +5209,10 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "transition",
-                        { attrs: { name: "ranking-row" } },
+                        {
+                          staticClass: "title",
+                          attrs: { name: "ranking-row" },
+                        },
                         [
                           _c(
                             "v-col",
