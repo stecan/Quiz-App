@@ -110,13 +110,19 @@ class AxiosMainController extends Controller
         $myId = $request['my_user_id']; // ログインユーザID
 
         // 手札情報取得
-        $result = t_follower::join('m_user', function($join) use ($myId) {
-            $join->on('t_follower.follower_user_id', '=', 'm_user.user_id')
+        $result = t_follower::join('m_user', function($j_user) use ($myId) {
+            $j_user->on('t_follower.follower_user_id', '=', 'm_user.user_id')
               ->where('t_follower.user_id', '=', $myId);
-        })->select([
+        })
+        ->leftJoin('t_answer', function($j_ans) {
+            $j_ans->on('t_answer.a_user_id', '=', 't_follower.follower_user_id');
+        })
+        ->select([
             'm_user.user_id as user_id',
             'm_user.user_name as user_name',
             'm_user.department as department',
+            'm_user.a_kbn as a_kbn',
+            DB::raw("case t_answer.point when 2 then '1' else '0' end as `status`"),
         ])
         ->get();
 

@@ -2759,8 +2759,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- //axios.defaults.baseURL = '/bingo2021';
 
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = '/bingo2021';
 
 
 
@@ -2784,6 +2784,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     /* 初期表示 */
+    if (this.$store.state.userId != '99999') {
+      this.$router.push("/");
+      return;
+    }
   },
   methods: {
     /* メソッド */
@@ -3031,7 +3035,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@-webkit-keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n@keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n.ranking-row-enter[data-v-f22cdc7a] {\n  opacity: 0;\n}\n.ranking-row-enter-to[data-v-f22cdc7a] {\n  opacity: 1;\n  -webkit-animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n          animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n}\n.back-ground[data-v-f22cdc7a] {\n  position: absolute;\n  max-width: 550px;\n  max-height: 80%;\n}\n.icon[data-v-f22cdc7a] {\n  height: 80px;\n  max-width: 80px;\n}\n.scroll[data-v-f22cdc7a] {\n  height: 80vh;\n  max-height: 80vh;\n  overflow-y: auto;\n}\n.name[data-v-f22cdc7a] {\n  font: bold;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@-webkit-keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n@keyframes ani-spin-data-v-f22cdc7a {\n0% {\n    transform: rotateX(0deg);\n}\n100% {\n    transform: rotateX(360deg);\n}\n}\n.ranking-row-enter[data-v-f22cdc7a] {\n  opacity: 0;\n}\n.ranking-row-enter-to[data-v-f22cdc7a] {\n  opacity: 1;\n  -webkit-animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n          animation: ani-spin-data-v-f22cdc7a 0.3s 30 forwards,ani-spin-data-v-f22cdc7a 0.6s 15 forwards,ani-spin-data-v-f22cdc7a 0.7s 5 forwards,ani-spin-data-v-f22cdc7a 1s 1 forwards;\n}\n.icon[data-v-f22cdc7a] {\n  height: 80px;\n  max-width: 80px;\n}\n.scroll[data-v-f22cdc7a] {\n  height: 80vh;\n  max-height: 80vh;\n  overflow-y: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5136,7 +5140,7 @@ var render = function () {
                                 1
                               )
                             : index > _vm.show
-                            ? _c("v-col", [
+                            ? _c("v-col", { staticClass: "title" }, [
                                 _vm._v(
                                   "\n                        " +
                                     _vm._s(user.rank) +
@@ -5196,7 +5200,7 @@ var render = function () {
                                   expression: "index > show",
                                 },
                               ],
-                              staticClass: "name",
+                              staticClass: "title",
                             },
                             [_vm._v(_vm._s(user.user_name))]
                           ),
@@ -5206,7 +5210,10 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "transition",
-                        { attrs: { name: "ranking-row" } },
+                        {
+                          staticClass: "title",
+                          attrs: { name: "ranking-row" },
+                        },
                         [
                           _c(
                             "v-col",

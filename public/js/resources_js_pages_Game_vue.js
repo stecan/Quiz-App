@@ -2210,7 +2210,9 @@ var EXTENSION = ".JPG";
         return {
           profileImagePath: IMAGE_DIR + card.user_id + EXTENSION,
           userName: card.user_name,
-          department: card.department
+          department: card.department,
+          kbn: card.a_kbn,
+          status: card.status
         };
       });
     },

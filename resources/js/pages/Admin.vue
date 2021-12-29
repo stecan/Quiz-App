@@ -45,7 +45,7 @@
 
 <script>
 import axios from 'axios';
-//axios.defaults.baseURL = '/bingo2021';
+axios.defaults.baseURL = '/bingo2021';
 import QuestionArea from '../components/QuestionArea.vue'
 import ChallengerArea from '../components/ChallengerArea.vue'
 import RankingDialog from '../components/RankingDialog.vue';
@@ -68,6 +68,11 @@ export default {
     }),
     created() {
         /* 初期表示 */
+        if(this.$store.state.userId != '99999')
+        {
+            this.$router.push("/");
+            return;
+        }
     },
     methods: {
         /* メソッド */

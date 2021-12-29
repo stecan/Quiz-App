@@ -19,7 +19,7 @@
                         <v-col v-else-if="user.rank == 3 && index > show">
                             <v-img class="icon" src="https://frame-illust.com/fi/wp-content/uploads/2015/02/medal-crown-2623-bronze-400x400.png" />
                         </v-col>
-                        <v-col v-else-if="index > show">
+                        <v-col v-else-if="index > show" class="title">
                             {{user.rank}} 位
                         </v-col>
                         </transition>
@@ -29,9 +29,9 @@
                         </v-col>
                         </transition>
                         <transition name="ranking-row">
-                        <v-col v-show="index > show" class="name">{{user.user_name}}</v-col>
+                        <v-col v-show="index > show" class="title">{{user.user_name}}</v-col>
                         </transition>
-                        <transition name="ranking-row">
+                        <transition name="ranking-row" class="title">
                         <v-col v-show="index > show">{{user.point}}</v-col>
                         </transition>
                     </v-row>
@@ -124,11 +124,6 @@ export default {
     }
 }
 
-.back-ground{
-    position: absolute;
-    max-width: 550px;
-    max-height: 80%;
-}
 .icon{
     height: 80px;
     max-width:80px;
@@ -137,8 +132,5 @@ export default {
     height: 80vh;
     max-height: 80vh;
     overflow-y: auto;
-}
-.name{
-    font: bold;
 }
 </style>
